@@ -1,54 +1,41 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using BBDS.Management.Data;
 using BBDS.Management.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace BBDS.Management.Controllers
 {
     public class UserControlController : Controller
     {
         private readonly ApplicationDbContext _db;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public UserControlController(ApplicationDbContext db)
+        public UserControlController(ApplicationDbContext db, UserManager <IdentityUser> userManager)
         {
             _db = db;
+            _userManager = userManager;
         }
         
         public async Task<IActionResult> Index()
         {
-            IEnumerable<RegisterViewModel> objRegisterList = _db.RegisterViewModels;
+            IEnumerable<UserEditingViewModel> objRegisterList = _db.Users.Select(u => new UserEditingViewModel
+            {
+                UserName = u.UserName,
+                Id = u.Id,
+            }); 
             return View(objRegisterList);
         }
-        //GET
-        [HttpGet]
-        public IActionResult Create()
-        {
-
-            return View();
-        }
-
-        //POST
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(RegisterViewModel obj)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(obj);
-            }
-            await _db.RegisterViewModels.AddAsync(obj);
-            await _db.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
+     
 
         //GET
         [HttpGet]
-        public IActionResult Edit(int? id)
+        public IActionResult Edit(string id)
         {
-            if (id==null||id==0)
+            if (id==null)
             {
                 return NotFound();
             }
-            var personFromDb = _db.RegisterViewModels.Find(id);
+            var personFromDb = _db.Users.FirstOrDefault(u => u.Id == id);
             if (personFromDb==null)
             {
                 return NotFound();
@@ -59,19 +46,26 @@ namespace BBDS.Management.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(RegisterViewModel obj)
+        public async Task<IActionResult> Edit(UserEditingViewModel obj)
         {
         
             if (!ModelState.IsValid)
             {
                 return View(obj);
             }
-
-             _db.RegisterViewModels.Update(obj);
-            await _db.SaveChangesAsync();
+            _userManager.Users.Where(u => u.Id == obj.Id).FirstOrDefault();
+            var user = new IdentityUser 
+            {
+            UserName=obj.UserName,
+            Email=obj.Email,
+            PhoneNumber=obj.PhoneNumber,
+            Id=obj.Id
+            };
+             
+            await _userManager.UpdateAsync(user);
             return RedirectToAction("Index");
         }
-
+        /*
         //GET
         [HttpGet]
         public IActionResult Delete(int? id)
@@ -106,6 +100,6 @@ namespace BBDS.Management.Controllers
             _db.RegisterViewModels.Remove(obj);
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
-        }
+        }*/
     }
 }

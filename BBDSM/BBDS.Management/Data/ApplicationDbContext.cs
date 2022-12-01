@@ -10,8 +10,6 @@ namespace BBDS.Management.Data
         {
 
         }
-        public DbSet<LoginViewModel> LoginViewModels { get; set; }
-        public DbSet<RegisterViewModel> RegisterViewModels { get; set; }
-        public DbSet<ErrorViewModel> ErrorViewModels { get; set; }
+
     }
 }
