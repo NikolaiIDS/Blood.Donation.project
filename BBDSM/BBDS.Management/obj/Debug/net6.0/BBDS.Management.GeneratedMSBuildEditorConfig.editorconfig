@@ -8,69 +8,69 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BBDS.Management
 build_property.RootNamespace = BBDS.Management
-build_property.ProjectDir = D:\Users\Nikolai\BloodDonationPJ\Blood.Donation.project\BBDSM\BBDS.Management\
+build_property.ProjectDir = D:\Blood.Donation.project\BBDSM\BBDS.Management\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Users\Nikolai\BloodDonationPJ\Blood.Donation.project\BBDSM\BBDS.Management
+build_property.MSBuildProjectDirectory = D:\Blood.Donation.project\BBDSM\BBDS.Management
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Areas/Identity/Pages/_ViewStart.cshtml]
+[D:/Blood.Donation.project/BBDSM/BBDS.Management/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Account/login.cshtml]
+[D:/Blood.Donation.project/BBDSM/BBDS.Management/Views/Account/login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxsb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Account/Register.cshtml]
+[D:/Blood.Donation.project/BBDSM/BBDS.Management/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Home/Index.cshtml]
+[D:/Blood.Donation.project/BBDSM/BBDS.Management/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Home/Privacy.cshtml]
+[D:/Blood.Donation.project/BBDSM/BBDS.Management/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/Error.cshtml]
+[D:/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/_LoginPartial.cshtml]
+[D:/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/UserControl/Create.cshtml]
+[D:/Blood.Donation.project/BBDSM/BBDS.Management/Views/UserControl/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckNvbnRyb2xcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/UserControl/Delete.cshtml]
+[D:/Blood.Donation.project/BBDSM/BBDS.Management/Views/UserControl/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckNvbnRyb2xcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/UserControl/Edit.cshtml]
+[D:/Blood.Donation.project/BBDSM/BBDS.Management/Views/UserControl/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckNvbnRyb2xcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/UserControl/Index.cshtml]
+[D:/Blood.Donation.project/BBDSM/BBDS.Management/Views/UserControl/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckNvbnRyb2xcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/_ViewImports.cshtml]
+[D:/Blood.Donation.project/BBDSM/BBDS.Management/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/_ViewStart.cshtml]
+[D:/Blood.Donation.project/BBDSM/BBDS.Management/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/_Layout.cshtml]
+[D:/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-z9e3mgxwa8
