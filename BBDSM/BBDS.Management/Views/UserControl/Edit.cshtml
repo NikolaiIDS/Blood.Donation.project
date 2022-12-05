@@ -1,4 +1,4 @@
-﻿@model RegisterViewModel
+﻿@model UserEditingViewModel
 
 <form method="post" asp-action="Edit">
     <div class=" border p-3 mt-4">
@@ -15,7 +15,7 @@
         </div>
         
         <button type="submit" class="btn btn-primary" stype="width:130px">Update</button>
-        <a asp-controller="UserControlController" asp-action="" class=" btn btn-secondary" stype="width:130px">
+        <a asp-controller="UserControl" asp-action="" class=" btn btn-secondary" stype="width:130px">
             Back to list
         </a>
     </div>

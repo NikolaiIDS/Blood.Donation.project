@@ -10,33 +10,42 @@ namespace BBDS.Management.Controllers
         private readonly ApplicationDbContext _db;
         private readonly UserManager<IdentityUser> _userManager;
 
-        public UserControlController(ApplicationDbContext db, UserManager <IdentityUser> userManager)
+        public UserControlController(ApplicationDbContext db, UserManager<IdentityUser> userManager)
         {
             _db = db;
             _userManager = userManager;
         }
-        
+
         public async Task<IActionResult> Index()
         {
             IEnumerable<UserEditingViewModel> objRegisterList = _db.Users.Select(u => new UserEditingViewModel
             {
                 UserName = u.UserName,
-                Id = u.Id,
-            }); 
+                Email = u.Email,
+                PhoneNumber = u.PhoneNumber,
+                Id = u.Id
+            });
             return View(objRegisterList);
         }
-     
+
 
         //GET
         [HttpGet]
         public IActionResult Edit(string id)
         {
-            if (id==null)
+            if (id == null)
             {
                 return NotFound();
             }
-            var personFromDb = _db.Users.FirstOrDefault(u => u.Id == id);
-            if (personFromDb==null)
+         //   var user = _db.Users.FirstOrDefault(u => u.Id == id);
+            var personFromDb = _db.Users.Select(u => new UserEditingViewModel
+            {
+                UserName = u.UserName,
+                Email = u.Email,
+                PhoneNumber = u.PhoneNumber,
+                Id = u.Id
+            }).FirstOrDefault(u => u.Id == id);
+            if (personFromDb == null)
             {
                 return NotFound();
             }
@@ -46,35 +55,37 @@ namespace BBDS.Management.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(UserEditingViewModel obj)
+        public async Task<IActionResult> Edit(UserEditingViewModel personFromDb)
         {
-        
-            if (!ModelState.IsValid)
-            {
-                return View(obj);
-            }
-            _userManager.Users.Where(u => u.Id == obj.Id).FirstOrDefault();
-            var user = new IdentityUser 
-            {
-            UserName=obj.UserName,
-            Email=obj.Email,
-            PhoneNumber=obj.PhoneNumber,
-            Id=obj.Id
-            };
-             
-            await _userManager.UpdateAsync(user);
-            return RedirectToAction("Index");
-        }
-        /*
-        //GET
-        [HttpGet]
-        public IActionResult Delete(int? id)
-        {
-            if (id == null || id == 0)
+
+            if (personFromDb == null)
             {
                 return NotFound();
             }
-            var personFromDb = _db.RegisterViewModels.Find(id);
+
+            if (!ModelState.IsValid)
+            {
+                return View(personFromDb);
+            }
+             _db.Update(personFromDb);
+            return RedirectToAction("Index");
+        }
+
+        //GET
+        [HttpGet]
+        public IActionResult Delete(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var personFromDb = _db.Users.Select(u => new UserDeleteViewModel
+            {
+                UserName = u.UserName,
+                Email = u.Email,
+                PhoneNumber = u.PhoneNumber,
+                Id = u.Id
+            }).FirstOrDefault(u => u.Id == u.Id);
             if (personFromDb == null)
             {
                 return NotFound();
@@ -85,21 +96,20 @@ namespace BBDS.Management.Controllers
         //POST
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeletePOST(int? id)
+        public async Task<IActionResult> DeletePOST(UserDeleteViewModel obj)
         {
-            var obj = _db.RegisterViewModels.Find(id);
-            if (obj== null)
+            if (obj == null)
             {
                 return NotFound();
             }
-           
+
             if (!ModelState.IsValid)
             {
                 return View(obj);
             }
-            _db.RegisterViewModels.Remove(obj);
+            _db.Remove(obj);
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
-        }*/
+        }
     }
 }
