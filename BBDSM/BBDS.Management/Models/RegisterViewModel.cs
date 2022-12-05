@@ -4,7 +4,6 @@ namespace BBDS.Management.Models
 {
     public class RegisterViewModel
     {
-        public int Id { get; set; }
         [Required]
         [MaxLength(20)]
         [MinLength(5)]
