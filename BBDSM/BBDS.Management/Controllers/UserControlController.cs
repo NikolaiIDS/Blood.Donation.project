@@ -37,7 +37,7 @@ namespace BBDS.Management.Controllers
             {
                 return NotFound();
             }
-         //   var user = _db.Users.FirstOrDefault(u => u.Id == id);
+            //   var user = _db.Users.FirstOrDefault(u => u.Id == id);
             var personFromDb = _db.Users.Select(u => new UserEditingViewModel
             {
                 UserName = u.UserName,
@@ -62,12 +62,17 @@ namespace BBDS.Management.Controllers
             {
                 return NotFound();
             }
+            var user = await _userManager.FindByIdAsync(personFromDb.Id);
+            user.UserName = personFromDb.UserName;
+            
 
-            if (!ModelState.IsValid)
+            if (user == null)
             {
-                return View(personFromDb);
+                return NotFound();
             }
-             _db.Update(personFromDb);
+
+            _db.Update(user);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -85,7 +90,8 @@ namespace BBDS.Management.Controllers
                 Email = u.Email,
                 PhoneNumber = u.PhoneNumber,
                 Id = u.Id
-            }).FirstOrDefault(u => u.Id == u.Id);
+            }).FirstOrDefault(u => u.Id == id);
+
             if (personFromDb == null)
             {
                 return NotFound();
@@ -98,16 +104,21 @@ namespace BBDS.Management.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeletePOST(UserDeleteViewModel obj)
         {
+            var user = await _userManager.FindByIdAsync(obj.Id);
+            if (user == null)
+            {
+                return NotFound();
+            }
             if (obj == null)
             {
                 return NotFound();
             }
-
-            if (!ModelState.IsValid)
-            {
-                return View(obj);
-            }
-            _db.Remove(obj);
+            
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(obj);
+            //}
+            _db.Remove(user);
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
