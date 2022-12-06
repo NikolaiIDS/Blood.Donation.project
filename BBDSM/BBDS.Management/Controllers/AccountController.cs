@@ -87,8 +87,8 @@ namespace BBDS.Management.Controllers
                 return View(model);
             }
 
-            var user = await userManager.FindByNameAsync(model.Email);
-
+            var user = await userManager.FindByEmailAsync(model.Email);
+           
             if (user != null)
             {
                 var result = await signInManager.PasswordSignInAsync(user, model.Password, false, false);

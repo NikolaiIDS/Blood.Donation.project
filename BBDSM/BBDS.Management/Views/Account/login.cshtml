@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Log in";
 }
-
+<link rel="stylesheet" href="~/css/submitButton.css" asp-append-version="true" />
 <h1 class="text-center">@ViewData["Title"]</h1>
 <div class="row">
     <div class="col-md-4 offset-md-4">
@@ -22,7 +22,13 @@
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
                 <div class="text-center">
-                    <button id="login-submit" type="submit" class="btn btn-primary">Log in</button>
+                    @*<button id="login-submit" type="submit" class="btn btn-primary">Log in</button>*@
+                  
+                        <button id="login-submit" type="submit" class="buttonCircle">
+                            <span class="text">Login</span>
+                            <i class="bi bi-check2 icon"></i>
+                        </button>
+              
                 </div>
             </form>
         </section>

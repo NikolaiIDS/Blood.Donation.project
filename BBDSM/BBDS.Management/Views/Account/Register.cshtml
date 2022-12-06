@@ -5,6 +5,7 @@
 }
 
 <h1 class="text-center">@ViewData["Title"]</h1>
+<link rel="stylesheet" href="~/css/submitButton.css" asp-append-version="true" />
 
 <div class="row">
     <div class="col-md-4 offset-md-4">
@@ -36,9 +37,13 @@
                 <input class="form-control" type="password" autocomplete="new-password" aria-required="true" asp-for="@Model.ConfirmPassword" />
                 <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
             </div>
-            <div class="text-center">
-                <button id="registerSubmit" type="submit" class="btn btn-primary">Register</button>
-            </div>
+              <div class="text-center">
+                        <button id="login-submit" type="submit" class="buttonCircle">
+                            <span class="text">Register</span>
+                            <i class="bi bi-check2 icon"></i>
+                        </button>
+              
+                </div>
         </form>
     </div>
 </div>
