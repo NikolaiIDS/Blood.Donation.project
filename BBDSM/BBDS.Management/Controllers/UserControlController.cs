@@ -2,6 +2,8 @@
 using BBDS.Management.Data;
 using BBDS.Management.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace BBDS.Management.Controllers
 {
@@ -16,6 +18,7 @@ namespace BBDS.Management.Controllers
             _userManager = userManager;
         }
 
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             IEnumerable<UserEditingViewModel> objRegisterList = _db.Users.Select(u => new UserEditingViewModel
