@@ -1,6 +1,7 @@
 using BBDS.Management.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using BBDS.Management.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
