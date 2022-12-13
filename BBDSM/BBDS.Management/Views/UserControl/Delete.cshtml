@@ -1,24 +1,26 @@
 ﻿@model UserDeleteViewModel
 
-<form method="post" asp-action="Delete">
-   
-    <div class=" border p-3 mt-4">
-        <div class=" row pb-2">
-            <h2 class=" text-primary">Remove Person </h2>
-            <hr />
+    <form method="post" asp-action="Delete">
+
+        <div class=" border p-3 mt-4">
+            <div class=" row pb-2">
+                <h2 class=" text-primary">Remove Person </h2>
+                <hr />
+            </div>
+            @* <div asp-validation-summary="All"></div>*@
+            <div class="mb-3 ">
+                <label asp-for="UserName" ></label>
+                <input asp-for="UserName" disabled class=" form-control" />
+            </div>
+
+            <button type="submit" class="btn btn-danger" stype="width:130px">Delete</button>
+            <a asp-controller="UserControl" asp-action="" class=" btn btn-secondary" stype="width:130px">
+                Back to list
+            </a>
         </div>
-       @* <div asp-validation-summary="All"></div>*@
-        <div class="mb-3 ">
-            <label asp-for="UserName" ></label>
-            <input asp-for="UserName" disabled class=" form-control" />
-        </div>
-       
-        <button type="submit" class="btn btn-danger" stype="width:130px">Delete</button>
-        <a asp-controller="UserControl" asp-action="" class=" btn btn-secondary" stype="width:130px">
-            Back to list
-        </a>
-    </div>
-</form>
+    </form>
+
+
 
 @section Scripts{
     @{

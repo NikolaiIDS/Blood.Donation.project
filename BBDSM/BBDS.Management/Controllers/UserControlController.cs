@@ -62,7 +62,6 @@ namespace BBDS.Management.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(UserEditingViewModel personFromDb)
         {
-
             if (personFromDb == null)
             {
                 return NotFound();
