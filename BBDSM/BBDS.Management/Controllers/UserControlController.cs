@@ -34,6 +34,7 @@ namespace BBDS.Management.Controllers
 
         //GET
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(string id)
         {
             if (id == null)
@@ -58,6 +59,7 @@ namespace BBDS.Management.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(UserEditingViewModel personFromDb)
         {
 
@@ -81,6 +83,7 @@ namespace BBDS.Management.Controllers
 
         //GET
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(string id)
         {
             if (id == null)
@@ -105,6 +108,7 @@ namespace BBDS.Management.Controllers
         //POST
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize (Roles = "Admin")]
         public async Task<IActionResult> DeletePOST(UserDeleteViewModel obj)
         {
             var user = await _userManager.FindByIdAsync(obj.Id);
