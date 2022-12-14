@@ -1,24 +1,44 @@
-﻿using BBDS.Management.Models;
+﻿using BBDS.Management.Data;
+using BBDS.Management.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace BBDS.Management.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly ApplicationDbContext _db;
         private readonly UserManager<IdentityUser> userManager;
 
         private readonly SignInManager<IdentityUser> signInManager;
 
         public AccountController(
             UserManager<IdentityUser> _userManager,
-            SignInManager<IdentityUser> _signInManager)
+            SignInManager<IdentityUser> _signInManager, ApplicationDbContext _Db)
         {
             userManager = _userManager;
             signInManager = _signInManager;
+            _db = _Db;
         }
 
+        public async Task<IActionResult> Edit()
+        {
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            var personFromDb = _db.Users.Select(u => new AccountControlViewModel
+            {
+                UserName = u.UserName,
+                Email = u.Email,
+                PhoneNumber = u.PhoneNumber,
+                Id = u.Id
+            }).FirstOrDefault(u => u.Id == userId);
+            if (personFromDb == null)
+            {
+                return NotFound();
+            }
+            return View(personFromDb);
+        }
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Register()
