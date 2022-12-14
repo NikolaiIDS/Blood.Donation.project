@@ -1,0 +1,50 @@
+﻿@model AccountControlViewModel
+
+<link rel="stylesheet" href="~/css/submitButton.css" asp-append-version="true" />
+<form method="post" asp-action="Edit">
+    <div class=" border p-3 mt-4">
+        <div class=" row pb-2">
+            <h2 class=" text-primary">Edit Person List </h2>
+            <hr />
+        </div>
+        @* <div asp-validation-summary="All"></div>*@
+        <div class="mb-3 ">
+            <label asp-for="UserName"></label>
+            <input asp-for="UserName" class=" form-control" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+
+        </div>
+
+        <div class="mb-3 ">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class=" form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+
+        </div>
+               
+        <div class="mb-3 ">
+            <label asp-for="PhoneNumber"></label>
+            <input asp-for="PhoneNumber" class=" form-control" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary" stype="width:130px">Update</button>
+        <a asp-controller="UserControl" asp-action="" class=" btn btn-secondary" stype="width:130px">
+            Back to list
+        </a>
+    </div>
+</form>
+ <form class="form-inline" asp-action="Logout" asp-controller="Account" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                @* <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>*@
+                <button type="submit" class="buttonCircle" >
+                    <span class="text">Logout</span>
+                    <i class="bi bi-check2 icon"></i>
+                </button>
+            </form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    }

@@ -1,0 +1,19 @@
+﻿.search-container form {
+
+    border: 2px solid #4b00ff;
+    position: relative;
+}
+
+    .search-container form button {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 50px;
+        background: transparent;
+        border: transparent;
+        font-size: 20px;
+        color: #4b00ff;
+        cursor: pointer;
+        outline: 0;
+    }
