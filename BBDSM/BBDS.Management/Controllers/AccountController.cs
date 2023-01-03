@@ -22,7 +22,7 @@ namespace BBDS.Management.Controllers
             signInManager = _signInManager;
             _db = _Db;
         }
-
+        [HttpGet]
         public async Task<IActionResult> Edit()
         {
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
@@ -39,6 +39,33 @@ namespace BBDS.Management.Controllers
             }
             return View(personFromDb);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+      
+        public async Task<IActionResult> Edit(UserEditingViewModel personFromDb)
+        {
+
+            if (personFromDb == null)
+            {
+                return NotFound();
+            }
+            var user = await userManager.FindByEmailAsync(personFromDb.Email);
+            user.UserName = personFromDb.UserName;
+            user.PhoneNumber = personFromDb.PhoneNumber;
+            user.Email = personFromDb.Email;
+
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            _db.Update(user);
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Edit");
+        }
+
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Register()

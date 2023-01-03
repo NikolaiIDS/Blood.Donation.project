@@ -29,13 +29,11 @@
 
         </div>
 
-        <button type="submit" class="btn btn-primary" stype="width:130px">Update</button>
-        <a asp-controller="UserControl" asp-action="" class=" btn btn-secondary" stype="width:130px">
-            Back to list
-        </a>
+        <button type="submit" class="btn btn-danger" stype="width:130px" >Обнови</button>
+       <button class="btn btn-primary"asp-action="Index" asp-controller="Home" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" >Назад</button>
     </div>
 </form>
- <form class="form-inline" asp-action="Logout" asp-controller="Account" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+ <form class="form-inline" style="padding-left: 20px; padding-top: 10px;" asp-action="Logout" asp-controller="Account" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                 @* <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>*@
                 <button type="submit" class="buttonCircle" >
                     <span class="text">Logout</span>
@@ -45,6 +43,6 @@
 
 @section Scripts{
     @{
-        <partial name="_ValidationScriptsPartial" />
+    <partial name="_ValidationScriptsPartial" />
     }
     }

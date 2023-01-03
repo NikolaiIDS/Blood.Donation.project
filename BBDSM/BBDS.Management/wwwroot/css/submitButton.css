@@ -7,7 +7,7 @@
     background-color: #008b8b;
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 10px;
     cursor: pointer;
     transition: width .5s, border-radius .5s;
 }
