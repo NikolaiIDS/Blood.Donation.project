@@ -46,10 +46,10 @@
             <div>
 
 
-                <select>
-                    <option value="5" selected="selected">Избери кръвна група</option>
-                    <option>
-                        <label style="padding-left: 10px;" asp-for="@Model.BloodId" value="1">1</label>
+              @*  <select>
+                    <option value="0" selected="selected">Избери кръвна група</option>
+                    <option value="1">
+                        <label style="padding-left: 10px;" asp-for="@Model.BloodId" >A+</label>
                         <span asp-validation-for="@Model.BloodId" class="text-danger"></span>
                     </option>
                     <option>
@@ -80,7 +80,22 @@
                         <label style="padding-left: 10px;" asp-for="@Model.BloodId" value="8">0-</label>
                         <span asp-validation-for="@Model.BloodId" class="text-danger"></span>
                     </option>
+                </select>*@
+
+                <div class="form-group">
+                <label asp-for="@Model.BloodId"></label>
+                <select asp-for="@Model.BloodId" class="form-control">
+                    <option value="1">A+</option>
+                    <option value="2">A-</option>
+                    <option value="3">B+</option>
+                    <option value="4">B-</option>
+                    <option value="5">AB+</option>
+                    <option value="6">AB-</option>
+                    <option value="7">0+</option>
+                    <option value="8">0-</option>
                 </select>
+                <span asp-validation-for="@Model.BloodId" class="small text-danger"></span>
+            </div>
 
             </div>
             <div class="text-lg-start" style="padding-bottom: 20px;">
