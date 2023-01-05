@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using BBDS.Management.Models;
 using Microsoft.AspNetCore.Identity;
+using BBDS.Management.Data.Configurations;
 
 namespace BBDS.Management.Data
 {
@@ -15,6 +16,7 @@ namespace BBDS.Management.Data
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.ApplyConfiguration(new BloodTypeConfiguration());
             base.OnModelCreating(builder);
         }
     }

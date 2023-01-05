@@ -1,22 +1,24 @@
-﻿using BBDS.Management.Data;
+﻿using System.Security.Claims;
+
+using BBDS.Management.Data;
 using BBDS.Management.Models;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace BBDS.Management.Controllers
 {
     public class AccountController : Controller
     {
         private readonly ApplicationDbContext _db;
-        private readonly UserManager<IdentityUser> userManager;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly SignInManager<ApplicationUser> signInManager;
 
         public AccountController(
-            UserManager<IdentityUser> _userManager,
-            SignInManager<IdentityUser> _signInManager, ApplicationDbContext _Db)
+            UserManager<ApplicationUser> _userManager,
+            SignInManager<ApplicationUser> _signInManager, ApplicationDbContext _Db)
         {
             userManager = _userManager;
             signInManager = _signInManager;
@@ -89,12 +91,18 @@ namespace BBDS.Management.Controllers
                 return View(model);
             }
 
-            var user = new IdentityUser()
+            var user = new ApplicationUser()
             {
                 Email = model.Email,
                 UserName = model.UserName,
-                PhoneNumber = model.PhoneNumber
+                PhoneNumber = model.PhoneNumber,
+                EGN = model.EGN,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                BloodTypeId= model.BloodId
+                
             };
+
 
             var result = await userManager.CreateAsync(user, model.Password);
 

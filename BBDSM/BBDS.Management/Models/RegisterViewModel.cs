@@ -30,14 +30,20 @@ namespace BBDS.Management.Models
         [RegularExpression(@"^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$")]
         public string PhoneNumber { get; set; } = null!;
 
-        //[Required]
-        //[MaxLength(20)]
-        //[MinLength(4)]
-        //public string FirstName { get; set; } = null!;
+        [Required]
+        [MaxLength(20, ErrorMessage = "Собственото име трябва да е по-малко от 20 символа!")]
+        [MinLength(3, ErrorMessage = "Собственото име трябва да е повече от 2 символа!")]
+        public string FirstName { get; set; } = null!;
+        [Required]
+        [MaxLength(20, ErrorMessage = "Фамилното име трябва да е по-малко от 20 символа!")]
+        [MinLength(3, ErrorMessage = "Фамилното име трябва да е повече от 2 символа!")]
+        public string LastName { get; set; } = null!;
+        [Required]
+        [RegularExpression(@"[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]", ErrorMessage = "ЕГН-то трябва да е 10-цифрено число!")]
 
-        //[Required]
-        //[MaxLength(20)]
-        //[MinLength(4)]
-        //public string LastName { get; set; } = null!;
+        public string EGN { get; set; } = null!;
+        public int BloodId { get; set; }
+
+
     }
 }

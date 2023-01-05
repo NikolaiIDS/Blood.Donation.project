@@ -10,9 +10,9 @@ namespace BBDS.Management.Controllers
     public class UserControlController : Controller
     {
         private readonly ApplicationDbContext _db;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public UserControlController(ApplicationDbContext db, UserManager<IdentityUser> userManager)
+        public UserControlController(ApplicationDbContext db, UserManager<ApplicationUser> userManager)
         {
             _db = db;
             _userManager = userManager;

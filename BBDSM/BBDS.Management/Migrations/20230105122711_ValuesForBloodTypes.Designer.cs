@@ -4,6 +4,7 @@ using BBDS.Management.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BBDS.Management.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230105122711_ValuesForBloodTypes")]
+    partial class ValuesForBloodTypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,7 +32,7 @@ namespace BBDS.Management.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("BloodTypeId")
+                    b.Property<int?>("BloodTypeId")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -305,13 +307,9 @@ namespace BBDS.Management.Migrations
 
             modelBuilder.Entity("BBDS.Management.Data.ApplicationUser", b =>
                 {
-                    b.HasOne("BBDS.Management.Data.BloodType", "BloodType")
+                    b.HasOne("BBDS.Management.Data.BloodType", null)
                         .WithMany("Users")
-                        .HasForeignKey("BloodTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BloodType");
+                        .HasForeignKey("BloodTypeId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
