@@ -23,8 +23,14 @@ namespace BBDS.Management.Data
         [RegularExpression(@"[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]", ErrorMessage = "ЕГН-то трябва да е 10-цифрено число!")]
         public string EGN { get; set; } = null!;
 
+
         [ForeignKey(nameof(BloodType))]
         public int BloodTypeId { get; set; }
         public BloodType BloodType { get; set; } = null!;
+
+
+        [ForeignKey(nameof(City))]
+        public Guid CityId { get; set; }
+        public City City { get; set; } = null!;
     }
 }

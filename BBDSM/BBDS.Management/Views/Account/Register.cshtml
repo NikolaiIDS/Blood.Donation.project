@@ -19,7 +19,7 @@
                 <span asp-validation-for="@Model.Email" class="text-danger"></span>
             </div>
             <div class="text-lg-start" style="padding-bottom: 20px;">
-                <label style="padding-left: 10px;" asp-for="@Model.UserName">Username</label>
+                <label style="padding-left: 10px;" asp-for="@Model.UserName">Потребителско име</label>
                 <input class="form-control " autocomplete="username" aria-required="true" asp-for="@Model.UserName" />
                 <span asp-validation-for="@Model.UserName" class="text-danger"></span>
             </div>
@@ -82,8 +82,24 @@
                     </option>
                 </select>*@
 
-                <div class="form-group">
-                <label asp-for="@Model.BloodId"></label>
+                 <div class="form-group"style="padding-bottom: 20px;">
+                <label asp-for="@Model.CityId">Град</label>
+                <select asp-for="@Model.CityId" class="form-control">
+                    <datalist>
+                        <option value="F40854CE-7D63-46A4-BB60-07DDE1A4705E">Пловдив</option>
+                        <option value="72316B2D-31A5-4BA8-8609-13719F7CCE98">Велико Търново</option>
+                        <option value="3A4DD904-D3B8-4ADB-B6A6-4E42267C9683">София</option>
+                        <option value="D0E60734-F384-4CCB-B472-61E8E9629E48">Враца</option>
+                        <option value="00182E26-FD34-436A-988A-69A8CE6CEB16">Горна Оряховица</option>
+                        <option value="56393F6B-D016-4583-B536-726AD925ED8A">Левски</option>
+                        <option value="7AAC1F3B-EF3E-461E-8AAB-857846F67FA4">Дряново</option>
+                        <option value="65078407-8AE3-4872-A807-CE3484306A99">Варна</option>
+                    </datalist>
+                </select>
+                <span asp-validation-for="@Model.BloodId" class="small text-danger"></span>
+            </div>
+                <div class="form-group"style="padding-bottom: 20px;">
+                <label asp-for="@Model.BloodId">Кръвна група</label>
                 <select asp-for="@Model.BloodId" class="form-control">
                     <option value="1">A+</option>
                     <option value="2">A-</option>

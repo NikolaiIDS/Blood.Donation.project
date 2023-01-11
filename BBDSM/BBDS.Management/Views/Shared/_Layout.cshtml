@@ -30,13 +30,13 @@
                                 <a class="nav-link " asp-area="" asp-controller="UserControl" asp-action="Index">UserControl</a>
                             </li>
                         }
-                        @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+                        @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                                 <div class="dropdown-menu">
 
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Edit">Account</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Inspect">Account</a>
 
                                 </div>
                             </li>

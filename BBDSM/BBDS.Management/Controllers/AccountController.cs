@@ -24,15 +24,44 @@ namespace BBDS.Management.Controllers
             signInManager = _signInManager;
             _db = _Db;
         }
+
         [HttpGet]
-        public async Task<IActionResult> Edit()
+        public async Task<IActionResult> Inspect()
         {
+
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            var personFromDb = _db.Users.Select(u => new AccountControlViewModel
+            var personFromDb = _db.Users.Select(u => new UserEditingViewModel
             {
                 UserName = u.UserName,
                 Email = u.Email,
                 PhoneNumber = u.PhoneNumber,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                EGN = u.EGN,
+                BloodId = u.BloodTypeId,
+                Id = u.Id
+            }).FirstOrDefault(u => u.Id == userId);
+            if (personFromDb == null)
+            {
+                return NotFound();
+            }
+            return View(personFromDb);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit()
+        {
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            var personFromDb = _db.Users.Select(u => new UserEditingViewModel
+            {
+                UserName = u.UserName,
+                Email = u.Email,
+                PhoneNumber = u.PhoneNumber,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                EGN = u.EGN,
+                BloodId = u.BloodTypeId,
+                CityId = u.CityId,
                 Id = u.Id
             }).FirstOrDefault(u => u.Id == userId);
             if (personFromDb == null)
@@ -56,6 +85,11 @@ namespace BBDS.Management.Controllers
             user.UserName = personFromDb.UserName;
             user.PhoneNumber = personFromDb.PhoneNumber;
             user.Email = personFromDb.Email;
+            user.FirstName = personFromDb.FirstName;
+            user.LastName = personFromDb.LastName;
+            user.EGN = personFromDb.EGN;
+            user.BloodTypeId = personFromDb.BloodId;
+            user.CityId = personFromDb.CityId;
 
 
             if (user == null)
@@ -99,7 +133,8 @@ namespace BBDS.Management.Controllers
                 EGN = model.EGN,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                BloodTypeId= model.BloodId
+                BloodTypeId= model.BloodId,
+                CityId = model.CityId
                 
             };
 

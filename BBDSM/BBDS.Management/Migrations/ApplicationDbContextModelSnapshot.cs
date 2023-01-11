@@ -33,6 +33,9 @@ namespace BBDS.Management.Migrations
                     b.Property<int>("BloodTypeId")
                         .HasColumnType("int");
 
+                    b.Property<Guid>("CityId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -94,6 +97,8 @@ namespace BBDS.Management.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("BloodTypeId");
+
+                    b.HasIndex("CityId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -163,6 +168,63 @@ namespace BBDS.Management.Migrations
                         {
                             Id = 8,
                             TypeName = "0-"
+                        });
+                });
+
+            modelBuilder.Entity("BBDS.Management.Data.City", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CityName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cities");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("3a4dd904-d3b8-4adb-b6a6-4e42267c9683"),
+                            CityName = "София"
+                        },
+                        new
+                        {
+                            Id = new Guid("65078407-8ae3-4872-a807-ce3484306a99"),
+                            CityName = "Варна"
+                        },
+                        new
+                        {
+                            Id = new Guid("72316b2d-31a5-4ba8-8609-13719f7cce98"),
+                            CityName = "Велиоко Търново"
+                        },
+                        new
+                        {
+                            Id = new Guid("f40854ce-7d63-46a4-bb60-07dde1a4705e"),
+                            CityName = "Пловдив"
+                        },
+                        new
+                        {
+                            Id = new Guid("d0e60734-f384-4ccb-b472-61e8e9629e48"),
+                            CityName = "Враца"
+                        },
+                        new
+                        {
+                            Id = new Guid("56393f6b-d016-4583-b536-726ad925ed8a"),
+                            CityName = "Левски"
+                        },
+                        new
+                        {
+                            Id = new Guid("00182e26-fd34-436a-988a-69a8ce6ceb16"),
+                            CityName = "Горна Оряховица"
+                        },
+                        new
+                        {
+                            Id = new Guid("7aac1f3b-ef3e-461e-8aab-857846f67fa4"),
+                            CityName = "Дряново"
                         });
                 });
 
@@ -311,7 +373,15 @@ namespace BBDS.Management.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("BBDS.Management.Data.City", "City")
+                        .WithMany("Users")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("BloodType");
+
+                    b.Navigation("City");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -366,6 +436,11 @@ namespace BBDS.Management.Migrations
                 });
 
             modelBuilder.Entity("BBDS.Management.Data.BloodType", b =>
+                {
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("BBDS.Management.Data.City", b =>
                 {
                     b.Navigation("Users");
                 });

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BBDS.Management.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230105134603_fk_ApplicationUser_BloodType")]
-    partial class fk_ApplicationUser_BloodType
+    [Migration("20230111133036_lmao")]
+    partial class lmao
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,6 +34,9 @@ namespace BBDS.Management.Migrations
 
                     b.Property<int>("BloodTypeId")
                         .HasColumnType("int");
+
+                    b.Property<Guid>("CityId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -96,6 +99,8 @@ namespace BBDS.Management.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("BloodTypeId");
+
+                    b.HasIndex("CityId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -166,6 +171,21 @@ namespace BBDS.Management.Migrations
                             Id = 8,
                             TypeName = "0-"
                         });
+                });
+
+            modelBuilder.Entity("BBDS.Management.Data.City", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CityName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cities");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -313,7 +333,15 @@ namespace BBDS.Management.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("BBDS.Management.Data.City", "City")
+                        .WithMany("Users")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("BloodType");
+
+                    b.Navigation("City");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -368,6 +396,11 @@ namespace BBDS.Management.Migrations
                 });
 
             modelBuilder.Entity("BBDS.Management.Data.BloodType", b =>
+                {
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("BBDS.Management.Data.City", b =>
                 {
                     b.Navigation("Users");
                 });
