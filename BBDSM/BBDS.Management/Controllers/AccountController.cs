@@ -1,44 +1,129 @@
-﻿using BBDS.Management.Data;
+﻿using System.Security.Claims;
+
+using BBDS.Management.Data;
 using BBDS.Management.Models;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
 
 namespace BBDS.Management.Controllers
 {
     public class AccountController : Controller
     {
         private readonly ApplicationDbContext _db;
-        private readonly UserManager<IdentityUser> userManager;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly SignInManager<ApplicationUser> signInManager;
 
         public AccountController(
-            UserManager<IdentityUser> _userManager,
-            SignInManager<IdentityUser> _signInManager, ApplicationDbContext _Db)
+            UserManager<ApplicationUser> _userManager,
+            SignInManager<ApplicationUser> _signInManager, ApplicationDbContext _Db)
         {
             userManager = _userManager;
             signInManager = _signInManager;
             _db = _Db;
         }
 
-        public async Task<IActionResult> Edit()
+        [HttpGet]
+        public async Task<IActionResult> Inspect()
         {
+
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            var personFromDb = _db.Users.Select(u => new AccountControlViewModel
+            var personFromDb = await _db.Users.Select(u => new UserEditingViewModel
             {
                 UserName = u.UserName,
                 Email = u.Email,
                 PhoneNumber = u.PhoneNumber,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                EGN = u.EGN,
+                BloodId = u.BloodTypeId,
+                Id = u.Id,
+                CityId = u.CityId
+                
+            }).FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (personFromDb == null)
+            {
+                return NotFound();
+            }
+
+            personFromDb.Cities = await _db.Cities.Select(c => new CityViewModel
+            {
+                Id = c.Id,
+                Name = c.CityName
+            }).ToListAsync();
+
+            return View(personFromDb);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit()
+        {
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            var personFromDb = _db.Users.Select(u => new UserEditingViewModel
+            {
+                UserName = u.UserName,
+                Email = u.Email,
+                PhoneNumber = u.PhoneNumber,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                EGN = u.EGN,
+                BloodId = u.BloodTypeId,
+                CityId = u.CityId,
                 Id = u.Id
             }).FirstOrDefault(u => u.Id == userId);
             if (personFromDb == null)
             {
                 return NotFound();
             }
+
+            personFromDb.Cities = await _db.Cities.Select(c => new CityViewModel
+            {
+                Name = c.CityName,
+                Id = c.Id
+            }).ToListAsync();
+
             return View(personFromDb);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public async Task<IActionResult> Edit(UserEditingViewModel personFromDb)
+        {
+
+            if (personFromDb == null)
+            {
+                return NotFound();
+            }
+
+            personFromDb.Cities = await _db.Cities.Select(c => new CityViewModel
+            {
+                Name = c.CityName,
+                Id = c.Id
+            }).ToListAsync();
+
+            var user = await userManager.FindByEmailAsync(personFromDb.Email);
+            user.UserName = personFromDb.UserName;
+            user.PhoneNumber = personFromDb.PhoneNumber;
+            user.Email = personFromDb.Email;
+            user.FirstName = personFromDb.FirstName;
+            user.LastName = personFromDb.LastName;
+            user.CityId = personFromDb.CityId;
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            _db.Update(user);
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Edit");
+        }
+
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Register()
@@ -62,17 +147,24 @@ namespace BBDS.Management.Controllers
                 return View(model);
             }
 
-            var user = new IdentityUser()
+            var user = new ApplicationUser()
             {
                 Email = model.Email,
                 UserName = model.UserName,
-                PhoneNumber = model.PhoneNumber
+                PhoneNumber = model.PhoneNumber,
+                EGN = model.EGN,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                BloodTypeId = model.BloodId,
+                CityId = model.CityId
             };
+
 
             var result = await userManager.CreateAsync(user, model.Password);
 
             if (result.Succeeded)
             {
+                await userManager.AddToRoleAsync(user,"User");
                 return RedirectToAction(nameof(AccountController.Login), "Account");
             }
 
@@ -108,7 +200,7 @@ namespace BBDS.Management.Controllers
             }
 
             var user = await userManager.FindByEmailAsync(model.Email);
-           
+
             if (user != null)
             {
                 var result = await signInManager.PasswordSignInAsync(user, model.Password, false, false);

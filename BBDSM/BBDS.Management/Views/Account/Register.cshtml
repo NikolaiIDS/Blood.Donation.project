@@ -19,14 +19,100 @@
                 <span asp-validation-for="@Model.Email" class="text-danger"></span>
             </div>
             <div class="text-lg-start" style="padding-bottom: 20px;">
-                <label style="padding-left: 10px;" asp-for="@Model.UserName">Username</label>
+                <label style="padding-left: 10px;" asp-for="@Model.UserName">Потребителско име</label>
                 <input class="form-control " autocomplete="username" aria-required="true" asp-for="@Model.UserName" />
                 <span asp-validation-for="@Model.UserName" class="text-danger"></span>
+            </div>
+            <div class="text-lg-start" style="padding-bottom: 20px;">
+                <label style="padding-left: 10px;" asp-for="@Model.FirstName">Собствено име</label>
+                <input class="form-control " autocomplete="Собствено име" aria-required="true" asp-for="@Model.FirstName" />
+                <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+            </div>
+            <div class="text-lg-start" style="padding-bottom: 20px;">
+                <label style="padding-left: 10px;" asp-for="@Model.LastName">Фамилно име</label>
+                <input class="form-control " autocomplete="Фамилно име" aria-required="true" asp-for="@Model.LastName" />
+                <span asp-validation-for="@Model.LastName" class="text-danger"></span>
             </div>
             <div class="text-lg-start" style="padding-bottom: 20px;">
                 <label style="padding-left: 10px;" asp-for="@Model.PhoneNumber">Phone Number</label>
                 <input class="form-control" aria-required="true" asp-for="@Model.PhoneNumber" />
                 <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="text-lg-start" style="padding-bottom: 20px;">
+                <label style="padding-left: 10px;" asp-for="@Model.EGN">ЕГН</label>
+                <input class="form-control" aria-required="true" asp-for="@Model.EGN" />
+                <span asp-validation-for="@Model.EGN" class="text-danger"></span>
+            </div>
+            <div>
+
+
+              @*  <select>
+                    <option value="0" selected="selected">Избери кръвна група</option>
+                    <option value="1">
+                        <label style="padding-left: 10px;" asp-for="@Model.BloodId" >A+</label>
+                        <span asp-validation-for="@Model.BloodId" class="text-danger"></span>
+                    </option>
+                    <option>
+                        <label style="padding-left: 10px;" asp-for="@Model.BloodId" value="2">A-</label>
+                        <span asp-validation-for="@Model.BloodId" class="text-danger"></span>
+                    </option>
+                    <option>
+                        <label style="padding-left: 10px;" asp-for="@Model.BloodId" value="3">B+</label>
+                        <span asp-validation-for="@Model.BloodId" class="text-danger"></span>
+                    </option>
+                    <option>
+                        <label style="padding-left: 10px;" asp-for="@Model.BloodId" value="4">B-</label>
+                        <span asp-validation-for="@Model.BloodId" class="text-danger"></span>
+                    </option>
+                    <option>
+                        <label style="padding-left: 10px;" asp-for="@Model.BloodId" value="5">AB+</label>
+                        <span asp-validation-for="@Model.BloodId" class="text-danger"></span>
+                    </option>
+                    <option>
+                        <label style="padding-left: 10px;" asp-for="@Model.BloodId" value="6">AB-</label>
+                        <span asp-validation-for="@Model.BloodId" class="text-danger"></span>
+                    </option>
+                    <option>
+                        <label style="padding-left: 10px;" asp-for="@Model.BloodId" value="7">0+</label>
+                        <span asp-validation-for="@Model.BloodId" class="text-danger"></span>
+                    </option>
+                    <option>
+                        <label style="padding-left: 10px;" asp-for="@Model.BloodId" value="8">0-</label>
+                        <span asp-validation-for="@Model.BloodId" class="text-danger"></span>
+                    </option>
+                </select>*@
+
+                 <div class="form-group"style="padding-bottom: 20px;">
+                <label asp-for="@Model.CityId">Град</label>
+                <select asp-for="@Model.CityId" class="form-control">
+                    <datalist>
+                        <option value="F40854CE-7D63-46A4-BB60-07DDE1A4705E">Пловдив</option>
+                        <option value="72316B2D-31A5-4BA8-8609-13719F7CCE98">Велико Търново</option>
+                        <option value="3A4DD904-D3B8-4ADB-B6A6-4E42267C9683">София</option>
+                        <option value="D0E60734-F384-4CCB-B472-61E8E9629E48">Враца</option>
+                        <option value="00182E26-FD34-436A-988A-69A8CE6CEB16">Горна Оряховица</option>
+                        <option value="56393F6B-D016-4583-B536-726AD925ED8A">Левски</option>
+                        <option value="7AAC1F3B-EF3E-461E-8AAB-857846F67FA4">Дряново</option>
+                        <option value="65078407-8AE3-4872-A807-CE3484306A99">Варна</option>
+                    </datalist>
+                </select>
+                <span asp-validation-for="@Model.BloodId" class="small text-danger"></span>
+            </div>
+                <div class="form-group"style="padding-bottom: 20px;">
+                <label asp-for="@Model.BloodId">Кръвна група</label>
+                <select asp-for="@Model.BloodId" class="form-control">
+                    <option value="1">A+</option>
+                    <option value="2">A-</option>
+                    <option value="3">B+</option>
+                    <option value="4">B-</option>
+                    <option value="5">AB+</option>
+                    <option value="6">AB-</option>
+                    <option value="7">0+</option>
+                    <option value="8">0-</option>
+                </select>
+                <span asp-validation-for="@Model.BloodId" class="small text-danger"></span>
+            </div>
+
             </div>
             <div class="text-lg-start" style="padding-bottom: 20px;">
                 <label style="padding-left: 10px;" asp-for="@Model.Password">Password</label>
@@ -38,13 +124,13 @@
                 <input class="form-control" type="password" autocomplete="new-password" aria-required="true" asp-for="@Model.ConfirmPassword" />
                 <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
             </div>
-              <div class="text-center" style="padding-top: 20px;">
-                        <button id="login-submit" type="submit" class="buttonCircle">
-                            <span class="text">Register</span>
-                            <i class="bi bi-check2 icon"></i>
-                        </button>
-              
-                </div>
+            <div class="text-center" style="padding-top: 20px;">
+                <button id="login-submit" type="submit" class="buttonCircle">
+                    <span class="text">Register</span>
+                    <i class="bi bi-check2 icon"></i>
+                </button>
+
+            </div>
         </form>
     </div>
 </div>

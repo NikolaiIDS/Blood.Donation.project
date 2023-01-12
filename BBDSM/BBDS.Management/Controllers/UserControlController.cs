@@ -10,9 +10,9 @@ namespace BBDS.Management.Controllers
     public class UserControlController : Controller
     {
         private readonly ApplicationDbContext _db;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public UserControlController(ApplicationDbContext db, UserManager<IdentityUser> userManager)
+        public UserControlController(ApplicationDbContext db, UserManager<ApplicationUser> userManager)
         {
             _db = db;
             _userManager = userManager;
@@ -21,7 +21,7 @@ namespace BBDS.Management.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         {
-            IEnumerable<UserEditingViewModel> objRegisterList = _db.Users.Select(u => new UserEditingViewModel
+            IEnumerable<UserEditingViewModel> objRegisterList =  _db.Users.Select(u => new UserEditingViewModel
             {
                 UserName = u.UserName,
                 Email = u.Email,

@@ -2,8 +2,15 @@
 
 namespace BBDS.Management.Models
 {
-    public class RegisterViewModel
+    public class InspectingViewModel
     {
+        public InspectingViewModel()
+        {
+            Cities = new List<CityViewModel>();
+        }
+
+        public string Id { get; set; }
+
         [Required]
         [MaxLength(20)]
         [MinLength(5)]
@@ -34,16 +41,21 @@ namespace BBDS.Management.Models
         [MaxLength(20, ErrorMessage = "Собственото име трябва да е по-малко от 20 символа!")]
         [MinLength(3, ErrorMessage = "Собственото име трябва да е повече от 2 символа!")]
         public string FirstName { get; set; } = null!;
+
         [Required]
         [MaxLength(20, ErrorMessage = "Фамилното име трябва да е по-малко от 20 символа!")]
         [MinLength(3, ErrorMessage = "Фамилното име трябва да е повече от 2 символа!")]
         public string LastName { get; set; } = null!;
+
         [Required]
         [RegularExpression(@"[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]", ErrorMessage = "ЕГН-то трябва да е 10-цифрено число!")]
-
         public string EGN { get; set; } = null!;
+
         public int BloodId { get; set; }
 
         public Guid CityId { get; set; }
+
+        public List<CityViewModel> Cities { get; set; }
+        public string CityName { get; set; }
     }
 }

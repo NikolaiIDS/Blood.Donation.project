@@ -1,6 +1,7 @@
-﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+﻿@using BBDS.Management.Data
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 <link rel="stylesheet" href="~/css/submitButton.css" asp-append-version="true" />
 <ul class="navbar-nav">
     @if (!SignInManager.IsSignedIn(User))
