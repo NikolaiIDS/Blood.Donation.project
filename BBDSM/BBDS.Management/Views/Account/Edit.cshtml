@@ -2,47 +2,96 @@
 
 <link rel="stylesheet" href="~/css/submitButton.css" asp-append-version="true" />
 <form method="post" asp-action="Edit">
-    <div class=" border p-3 mt-4">
-        <div class=" row pb-2">
-            <h2 class=" text-primary">Edit Person List </h2>
-            <hr />
-        </div>
-        @* <div asp-validation-summary="All"></div>*@
-        <div class="mb-3 ">
-            <label asp-for="UserName"></label>
-            <input asp-for="UserName" class=" form-control" />
-            <span asp-validation-for="UserName" class="text-danger"></span>
-
-        </div>
-
-        <div class="mb-3 ">
-            <label asp-for="Email"></label>
-            <input asp-for="Email" class=" form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-
-        </div>
-               
-        <div class="mb-3 ">
-            <label asp-for="PhoneNumber"></label>
-            <input asp-for="PhoneNumber" class=" form-control" />
-            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-
-        </div>
-
-        <button type="submit" class="btn btn-danger" stype="width:130px" >Обнови</button>
-       <button class="btn btn-primary"asp-action="Index" asp-controller="Home" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" >Назад</button>
+   <div class=" row pb-2">
+        <h2 class=" text-primary">Промяна на акаунт </h2>
+        <hr />
     </div>
+    <form id="registerForm" method="post">
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="text-lg-start" style="padding-bottom: 20px;">
+                <label style="padding-left: 10px;" asp-for="@Model.Email">Email</label>
+                <input class="form-control " autocomplete="username" aria-required="true" asp-for="@Model.Email" />
+                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+            </div>
+            <div class="text-lg-start" style="padding-bottom: 20px;">
+                <label style="padding-left: 10px;" asp-for="@Model.UserName">Потребителско име</label>
+                <input class="form-control " autocomplete="username" aria-required="true" asp-for="@Model.UserName" />
+                <span asp-validation-for="@Model.UserName" class="text-danger"></span>
+            </div>
+            <div class="text-lg-start" style="padding-bottom: 20px;">
+                <label style="padding-left: 10px;" asp-for="@Model.FirstName">Собствено име</label>
+                <input class="form-control " autocomplete="Собствено име" aria-required="true" asp-for="@Model.FirstName" />
+                <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+            </div>
+            <div class="text-lg-start" style="padding-bottom: 20px;">
+                <label style="padding-left: 10px;" asp-for="@Model.LastName">Фамилно име</label>
+                <input class="form-control " autocomplete="Фамилно име" aria-required="true" asp-for="@Model.LastName" />
+                <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+            </div>
+            <div class="text-lg-start" style="padding-bottom: 20px;">
+                <label style="padding-left: 10px;" asp-for="@Model.PhoneNumber">Phone Number</label>
+                <input class="form-control" aria-required="true" asp-for="@Model.PhoneNumber" />
+                <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="text-lg-start" style="padding-bottom: 20px;">
+                <label style="padding-left: 10px;" asp-for="@Model.EGN">ЕГН</label>
+                <input class="form-control" aria-required="true" asp-for="@Model.EGN" />
+                <span asp-validation-for="@Model.EGN" class="text-danger"></span>
+            </div>
+            <div>
+
+
+        <div style="padding-bottom: 20px">
+        <select >
+            @foreach (var item in Model.Cities)
+            {
+                bool isSelected = item.Id == Model.CityId;
+                <option value="@item.Id" selected="@isSelected" >@item.Name</option>
+            }
+        </select>  
+    </div>
+
+
+
+            </div>
+            
+                    <button class="btn btn-danger" stype="width:130px" asp-action="Edit" asp-controller="Account" asp-route-returnUrl="@Url.Action("Index", "Account", new { area = "" })">Обнови</button>
+        <button class="btn btn-primary" asp-action="Index" asp-controller="Home" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">Към начална страница</button>
+            
+        </form>
+    @* <div asp-validation-summary="All"></div>*@
+   @* <div class="mb-3 ">
+        <label asp-for="UserName"></label>
+        <input asp-for="UserName" class=" form-control" />
+    </div>
+
+    <div class="mb-3 ">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class=" form-control" />
+
+
+    </div>
+
+    <div class="mb-3 ">
+        <label asp-for="PhoneNumber"></label>
+        <input asp-for="PhoneNumber" class=" form-control" />
+    </div>  
+
+    <div class="mb-3">
+        <label asp-for="EGN"></label>
+        <input asp-for="EGN" class=" form-control" />
+    </div>
+    *@
+    
+
+
+    
 </form>
- <form class="form-inline" style="padding-left: 20px; padding-top: 10px;" asp-action="Logout" asp-controller="Account" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                @* <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>*@
-                <button type="submit" class="buttonCircle" >
-                    <span class="text">Logout</span>
-                    <i class="bi bi-check2 icon"></i>
-                </button>
-            </form>
+
 
 @section Scripts{
     @{
-    <partial name="_ValidationScriptsPartial" />
+        <partial name="_ValidationScriptsPartial" />
     }
     }

@@ -2,9 +2,9 @@
 
 namespace BBDS.Management.Models
 {
-    public class UserEditingViewModel
+    public class InspectingViewModel
     {
-        public UserEditingViewModel()
+        public InspectingViewModel()
         {
             Cities = new List<CityViewModel>();
         }
@@ -53,9 +53,9 @@ namespace BBDS.Management.Models
 
         public int BloodId { get; set; }
 
-        public string CityName { get; set; }
-
         public Guid CityId { get; set; }
-       public List<CityViewModel> Cities { get; set; }
+
+        public List<CityViewModel> Cities { get; set; }
+        public string CityName { get; set; }
     }
 }

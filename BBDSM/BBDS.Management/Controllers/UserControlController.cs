@@ -21,7 +21,7 @@ namespace BBDS.Management.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         {
-            IEnumerable<UserEditingViewModel> objRegisterList = _db.Users.Select(u => new UserEditingViewModel
+            IEnumerable<UserEditingViewModel> objRegisterList =  _db.Users.Select(u => new UserEditingViewModel
             {
                 UserName = u.UserName,
                 Email = u.Email,

@@ -6,6 +6,7 @@ using BBDS.Management.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BBDS.Management.Controllers
 {
@@ -30,7 +31,7 @@ namespace BBDS.Management.Controllers
         {
 
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            var personFromDb = _db.Users.Select(u => new UserEditingViewModel
+            var personFromDb = await _db.Users.Select(u => new UserEditingViewModel
             {
                 UserName = u.UserName,
                 Email = u.Email,
@@ -39,12 +40,22 @@ namespace BBDS.Management.Controllers
                 LastName = u.LastName,
                 EGN = u.EGN,
                 BloodId = u.BloodTypeId,
-                Id = u.Id
-            }).FirstOrDefault(u => u.Id == userId);
+                Id = u.Id,
+                CityId = u.CityId
+                
+            }).FirstOrDefaultAsync(u => u.Id == userId);
+
             if (personFromDb == null)
             {
                 return NotFound();
             }
+
+            personFromDb.Cities = await _db.Cities.Select(c => new CityViewModel
+            {
+                Id = c.Id,
+                Name = c.CityName
+            }).ToListAsync();
+
             return View(personFromDb);
         }
 
@@ -68,12 +79,19 @@ namespace BBDS.Management.Controllers
             {
                 return NotFound();
             }
+
+            personFromDb.Cities = await _db.Cities.Select(c => new CityViewModel
+            {
+                Name = c.CityName,
+                Id = c.Id
+            }).ToListAsync();
+
             return View(personFromDb);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-      
+
         public async Task<IActionResult> Edit(UserEditingViewModel personFromDb)
         {
 
@@ -81,16 +99,20 @@ namespace BBDS.Management.Controllers
             {
                 return NotFound();
             }
+
+            personFromDb.Cities = await _db.Cities.Select(c => new CityViewModel
+            {
+                Name = c.CityName,
+                Id = c.Id
+            }).ToListAsync();
+
             var user = await userManager.FindByEmailAsync(personFromDb.Email);
             user.UserName = personFromDb.UserName;
             user.PhoneNumber = personFromDb.PhoneNumber;
             user.Email = personFromDb.Email;
             user.FirstName = personFromDb.FirstName;
             user.LastName = personFromDb.LastName;
-            user.EGN = personFromDb.EGN;
-            user.BloodTypeId = personFromDb.BloodId;
             user.CityId = personFromDb.CityId;
-
 
             if (user == null)
             {
@@ -133,9 +155,8 @@ namespace BBDS.Management.Controllers
                 EGN = model.EGN,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                BloodTypeId= model.BloodId,
+                BloodTypeId = model.BloodId,
                 CityId = model.CityId
-                
             };
 
 
@@ -143,6 +164,7 @@ namespace BBDS.Management.Controllers
 
             if (result.Succeeded)
             {
+                await userManager.AddToRoleAsync(user,"User");
                 return RedirectToAction(nameof(AccountController.Login), "Account");
             }
 
@@ -178,7 +200,7 @@ namespace BBDS.Management.Controllers
             }
 
             var user = await userManager.FindByEmailAsync(model.Email);
-           
+
             if (user != null)
             {
                 var result = await signInManager.PasswordSignInAsync(user, model.Password, false, false);
