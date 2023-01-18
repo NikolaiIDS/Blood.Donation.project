@@ -8,9 +8,9 @@
         <div class="col-6">
             <h2 class=" text-primary"> Person List</h2>
         </div>
-        
+
     </div>
-    <br></br>
+    <br>
 
     <table class="table table-bordered table-striped" style="width : 100%">
         <thead>
@@ -31,13 +31,16 @@
                     <td width="50%">
                         @item.UserName
                     </td>
-                    
+
                     <td>
                         <div class="w-100 btn-group" role="group">
-                            <a asp-controller="UserControl" asp-action="Edit" asp-route-id="@item.Id"
-                           class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>
-                           <a asp-controller="UserControl" asp-action="Delete" asp-route-id="@item.Id"
-                           class="btn btn-danger mx-2"> <i class="bi bi-person-dash-fill"></i> Delete</a>
+                            <form method="post" asp-controller="Email" asp-action="SendEmail" asp-route-id="@item.Email" class="btn btn-primary mx-2">
+                                <i class="bi bi-pencil-square"></i> 
+                                <input type="hidden" value="@item.Email" name="toEmail"/>
+                                <input type="submit" value="Sand"/>
+                            </form>
+                            <a asp-controller="UserControl" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>
+                            <a asp-controller="UserControl" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger mx-2"> <i class="bi bi-person-dash-fill"></i> Delete</a>
                         </div>
                     </td>
 

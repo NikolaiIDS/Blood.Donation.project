@@ -4,7 +4,7 @@ using System.Net.Mail;
 
 namespace BBDS.Management.Controllers
 {
-    public class EmailController
+    public class EmailController : Controller
     {
         //Global variables
         string mailBody = "<!DOCTYPE html>" +
@@ -19,13 +19,13 @@ namespace BBDS.Management.Controllers
         string mailPassword = "Aa!123456";
 
         [HttpPost]
-        public IActionResult SendEmail(string toEnail)//,IFormFile attachment) ---> in case we want to add attachment
+        public IActionResult SendEmail(string toEmail)//,IFormFile attachment) ---> in case we want to add attachment
         {
             //Attachment
             //message.Attachments.Add(new Attachment());
 
             //Mail message
-            MailMessage message = new MailMessage(new MailAddress(fromEmail,mailTitle),new MailAddress(toEnail));
+            MailMessage message = new MailMessage(new MailAddress(fromEmail,mailTitle),new MailAddress(toEmail));
 
             //Mail content
             message.Subject = mailSubject;
@@ -48,8 +48,7 @@ namespace BBDS.Management.Controllers
 
             //Send email
             smtp.Send(message);
-
-            return View();
+            return RedirectToAction("Edit", "UserControl");
         }
     }
 }

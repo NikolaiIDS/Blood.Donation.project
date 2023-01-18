@@ -31,14 +31,16 @@
     </div>
     
     <div style="padding-bottom: 20px">
-        <select >
-            @foreach (var item in Model.Cities)
-            {
-                bool isSelected = item.Id == Model.CityId;
-                <option value="@item.Id" selected="@isSelected" disabled>@item.Name</option>
-                
-            }
-        </select>  
+         <label>Град</label>
+          <select asp-for="CityId" class="form-control" disabled>
+                    @foreach (var item in Model.Cities)
+                    {
+                        
+                        bool isSelected = item.Id == Model.CityId;
+                        <option name="CityId" value="@item.Id" selected="@isSelected">@item.Name</option>
+                    }
+                </select>
+         
     </div>
 
     <div>
