@@ -16,7 +16,7 @@ namespace BBDS.Management.Controllers
         string fromEmail = "bbdsmanagement@gmail.com";
         string mailTitle = "Emergency";
         string mailSubject = "Blood request";
-        string mailPassword = "Aa!123456";
+        string mailPassword = "qqizxtlzwhhgxnjb";
 
         [HttpPost]
         public IActionResult SendEmail(string toEmail)//,IFormFile attachment) ---> in case we want to add attachment
@@ -35,7 +35,7 @@ namespace BBDS.Management.Controllers
             //Server details
             SmtpClient smtp = new SmtpClient(); 
             smtp.Host= "smtp.gmail.com";
-            smtp.Port = 578;
+            smtp.Port = 587;
             smtp.EnableSsl= true;
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
 
@@ -48,7 +48,7 @@ namespace BBDS.Management.Controllers
 
             //Send email
             smtp.Send(message);
-            return RedirectToAction("Edit", "UserControl");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
