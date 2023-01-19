@@ -3,7 +3,7 @@ using BBDS.Management.Data;
 using BBDS.Management.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace BBDS.Management.Controllers
 {
@@ -40,7 +40,7 @@ namespace BBDS.Management.Controllers
         //GET
         [HttpGet]
         [Authorize(Roles = "Admin")]
-        public IActionResult Edit(string id)
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
@@ -59,6 +59,11 @@ namespace BBDS.Management.Controllers
                 CityId = u.CityId,
                 BloodId = u.BloodTypeId
             }).FirstOrDefault(u => u.Id == id);
+            personFromDb.Cities = await _db.Cities.Select(c => new CityViewModel
+            {
+                Name = c.CityName,
+                Id = c.Id
+            }).ToListAsync();
             if (personFromDb == null)
             {
                 return NotFound();
@@ -78,7 +83,15 @@ namespace BBDS.Management.Controllers
             }
             var user = await _userManager.FindByIdAsync(personFromDb.Id);
             user.UserName = personFromDb.UserName;
+            user.PhoneNumber = personFromDb.PhoneNumber;
+            user.Email = personFromDb.Email;
+            user.FirstName = personFromDb.FirstName;
+            user.LastName = personFromDb.LastName;
+            user.CityId = personFromDb.CityId;
+            user.EGN = personFromDb.EGN;
             
+           
+
 
             if (user == null)
             {

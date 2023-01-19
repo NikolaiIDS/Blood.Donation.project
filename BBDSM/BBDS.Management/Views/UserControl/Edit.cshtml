@@ -17,12 +17,38 @@
                 <input asp-for="FirstName" class=" form-control" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
-
+             <div class="mb-3 ">
+                <label asp-for="LastName"></label>
+                <input asp-for="LastName" class=" form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+             <div class="mb-3 ">
+                <label asp-for="PhoneNumber"></label>
+                <input asp-for="PhoneNumber" class=" form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+             <div class="mb-3 ">
+                <label asp-for="EGN"></label>
+                <input asp-for="EGN" class=" form-control" />
+                <span asp-validation-for="EGN" class="text-danger"></span>
+            </div>
+            <div>
+             <label>Град</label>
+                <select asp-for="CityId" class="form-control">
+                    @foreach (var item in Model.Cities)
+                    {
+                        bool isSelected = item.Id == Model.CityId;
+                        <option name="CityId" value="@item.Id" selected="@isSelected">@item.Name</option>
+                    }
+                </select>
+            </div>
+            <div style="padding-top:10px">
             <button type="submit" class="btn btn-primary" stype="width:130px">Update</button>
              
             <a asp-controller="UserControl" asp-action="" class=" btn btn-secondary" stype="width:130px">
                 Back to list
             </a>
+            </div>
         </div>
     </form>
 

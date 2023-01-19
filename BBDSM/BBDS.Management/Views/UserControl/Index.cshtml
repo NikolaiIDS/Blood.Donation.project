@@ -21,9 +21,20 @@
                 <th>
                     Данни на потребителя
                 </th>
-                <th>
-                    Изпрати имейл
-                </th>
+
+                @if (User.IsInRole("Medic"))
+                {
+                    <th>
+                        Изпрати имейл
+                    </th>
+                }
+                @if (User.IsInRole("Admin"))
+                {
+                    <th>
+                        Управление
+                    </th>
+                }
+
                 <th></th>
             </tr>
         </thead>
@@ -32,28 +43,28 @@
             {
                 <tr>
                     <td width="80%">
-                        @item.UserName <br/>
-                        @item.FirstName <br/>
-                        @item.LastName <br/>
-                        @item.EGN <br/>
+                        @item.UserName <br />
+                        @item.FirstName <br />
+                        @item.LastName <br />
+                        @item.EGN <br />
                     </td>
 
                     <td>
-                        <div class="btn-group" style="padding-top: 12px" role="group">
+                        <div class="btn-group" role="group">
                             @if (User.IsInRole("Medic"))
                             {
-                                <form  method="post" asp-controller="Email" asp-action="SendEmail" asp-route-id="@item.Email">
-                                  @*  <i class="bi bi-pencil-square"></i>*@
+                                <form method="post" asp-controller="Email" asp-action="SendEmail" asp-route-id="@item.Email">
+                                    @*  <i class="bi bi-pencil-square"></i>*@
                                     <input type="hidden" value="@item.Email" name="toEmail" />
-                                    <input  class="btn button-17" type="submit" value="Изпрати"/>
+                                    <input class="btn button-17" type="submit" value="Изпрати" />
                                 </form>
                             }
 
                             @if (User.IsInRole("Admin"))
                             {
 
-                                <a asp-controller="UserControl" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>
-                                <a asp-controller="UserControl" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger mx-2"> <i  class="bi bi-person-dash-fill"></i> Delete</a>
+                                <a asp-controller="UserControl" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary "> <i class="bi bi-pencil-square"></i> Edit</a>
+                                <a asp-controller="UserControl" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger "> <i class="bi bi-person-dash-fill"></i> Delete</a>
                             }
 
                         </div>

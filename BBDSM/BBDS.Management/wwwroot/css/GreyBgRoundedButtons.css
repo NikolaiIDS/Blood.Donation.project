@@ -3691,7 +3691,7 @@ textarea.form-control-lg {
     --bs-dropdown-zindex: 1000;
     --bs-dropdown-min-width: 10rem;
     --bs-dropdown-padding-x: 0;
-    --bs-dropdown-padding-y: 0.5rem;
+    --bs-dropdown-padding-y: 0.15rem;
     --bs-dropdown-spacer: 0.125rem;
     --bs-dropdown-font-size: 1rem;
     --bs-dropdown-color: #7b8ab8;
