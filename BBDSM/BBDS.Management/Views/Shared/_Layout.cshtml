@@ -32,6 +32,12 @@
                         }
                         @if (User.Identity.IsAuthenticated)
                         {
+                            <li class="nav-item">
+                                <a class="nav-link " asp-area="" asp-controller="ContactUs" asp-action="ContactUs">Свържете се с нас</a>
+                            </li>
+                        }
+                        @if (User.Identity.IsAuthenticated)
+                        {
                             <li class="nav-item dropdown text-light" style="padding-right:40px">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Опции</a>
                                 <div class="dropdown-menu" style="padding-left: 20px">
