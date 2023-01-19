@@ -2,6 +2,7 @@
 
 <link rel="stylesheet" href="~/css/submitButton.css" asp-append-version="true" />
 
+
 <div class=" border p-3 mt-4">
     <div class=" row pb-2">
         <h2 class=" text-primary">Преглеждане на акаунт </h2>
@@ -23,14 +24,15 @@
     <div class="mb-3 ">
         <label asp-for="PhoneNumber"></label>
         <input asp-for="PhoneNumber" class=" form-control" disabled />
-    </div>  
+    </div>
 
     <div class="mb-3">
         <label asp-for="EGN"></label>
         <input asp-for="EGN" class=" form-control" disabled />
     </div>
-    
+
     <div style="padding-bottom: 20px">
+<<<<<<< Updated upstream
         <select >
             @foreach (var item in Model.Cities)
             {
@@ -39,13 +41,22 @@
                 
             }
         </select>  
+=======
+        <label>Град</label>
+        <select asp-for="CityId" class="form-control" disabled>
+            @foreach (var item in Model.Cities)
+            {
+
+                bool isSelected = item.Id == Model.CityId;
+                <option name="CityId" value="@item.Id" selected="@isSelected">@item.Name</option>
+            }
+        </select>
+
+>>>>>>> Stashed changes
     </div>
 
     <div>
-        <a asp-controller="Account" asp-action="Edit"
-           class="btn btn-danger mx-2"> <i class="bi bi-pencil-square"></i> Промени</a>
-
-        <button class="btn btn-primary" asp-action="Index" asp-controller="Home" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">Назад</button>
+        <a asp-controller="Account" asp-action="Edit" class="btn btn-danger mx-2"> <i class="bi bi-pencil-square"></i> Промени</a>
     </div>
 
 </div>
@@ -60,6 +71,6 @@
 
 @section Scripts{
     @{
-    <partial name="_ValidationScriptsPartial" />
+        <partial name="_ValidationScriptsPartial" />
     }
     }

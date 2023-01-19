@@ -26,7 +26,12 @@ namespace BBDS.Management.Controllers
                 UserName = u.UserName,
                 Email = u.Email,
                 PhoneNumber = u.PhoneNumber,
-                Id = u.Id
+                Id = u.Id,                
+                EGN = u.EGN,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                CityId = u.CityId,
+                BloodId = u.BloodTypeId
             });
             return View(objRegisterList);
         }
@@ -47,7 +52,12 @@ namespace BBDS.Management.Controllers
                 UserName = u.UserName,
                 Email = u.Email,
                 PhoneNumber = u.PhoneNumber,
-                Id = u.Id
+                Id = u.Id,
+                EGN = u.EGN,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                CityId = u.CityId,
+                BloodId = u.BloodTypeId
             }).FirstOrDefault(u => u.Id == id);
             if (personFromDb == null)
             {
