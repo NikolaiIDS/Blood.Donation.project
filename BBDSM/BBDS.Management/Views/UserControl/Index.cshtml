@@ -47,6 +47,42 @@
                         @item.FirstName <br />
                         @item.LastName <br />
                         @item.EGN <br />
+                        <div class="mb-3">
+                <label>Кръвна група</label><br />
+                @if (item.BloodId == 1)
+                {
+                    <text>A+</text>
+                }
+                @if (item.BloodId == 2)
+                {
+                    <text>A-</text>
+                }
+                @if (item.BloodId == 3)
+                {
+                    <text>B+</text>
+                }
+                @if (item.BloodId == 4)
+                {
+                    <text>B-</text>
+                }
+                @if (item.BloodId == 5)
+                {
+                    <text>AB+</text>
+                }
+                @if (item.BloodId == 6)
+                {
+                    <text>AB-</text>
+                }
+                @if (item.BloodId == 7)
+                {
+                    <text>0+</text>
+                }
+                @if (item.BloodId == 8)
+                {
+                    <text>0-</text>
+                }
+
+            </div>
                     </td>
 
                     <td>

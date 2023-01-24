@@ -44,6 +44,19 @@
 
     </div>
 
+    <div class="mb-3">
+        <label>Кръвна група</label><br/>
+       @if (Model.BloodId == 1) {<text>A+</text>}
+       @if (Model.BloodId == 2) {<text>A-</text>}
+       @if (Model.BloodId == 3) {<text>B+</text>}
+       @if (Model.BloodId == 4) {<text>B-</text>}
+       @if (Model.BloodId == 5) {<text>AB+</text>}
+       @if (Model.BloodId == 6) {<text>AB-</text>}
+       @if (Model.BloodId == 7) {<text>0+</text>}
+       @if (Model.BloodId == 8) {<text>0-</text>}
+      
+    </div>
+
     <div>
         <a asp-controller="Account" asp-action="Edit" class="btn btn-danger mx-2"> <i class="bi bi-pencil-square"></i> Промени</a>
     </div>

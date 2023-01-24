@@ -89,6 +89,7 @@ namespace BBDS.Management.Controllers
             user.LastName = personFromDb.LastName;
             user.CityId = personFromDb.CityId;
             user.EGN = personFromDb.EGN;
+            user.BloodTypeId = personFromDb.BloodId;
             
            
 

@@ -34,7 +34,7 @@
             <input class="form-control" aria-required="true" asp-for="@Model.PhoneNumber" />
             <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
         </div>
-        <div  class="text-lg-start" style="padding-bottom: 20px;">
+        <div class="text-lg-start" style="padding-bottom: 20px;">
             <label style="padding-left: 10px;" asp-for="@Model.EGN">ЕГН</label>
             <input class="form-control" aria-required="true" asp-for="@Model.EGN" disabled />
             <span asp-validation-for="@Model.EGN" class="text-danger"></span>
@@ -50,9 +50,46 @@
                     }
                 </select>
             </div>
+            <div class="mb-3">
+                <label>Кръвна група</label><br />
+                @if (Model.BloodId == 1)
+                {
+                    <text>A+</text>
+                }
+                @if (Model.BloodId == 2)
+                {
+                    <text>A-</text>
+                }
+                @if (Model.BloodId == 3)
+                {
+                    <text>B+</text>
+                }
+                @if (Model.BloodId == 4)
+                {
+                    <text>B-</text>
+                }
+                @if (Model.BloodId == 5)
+                {
+                    <text>AB+</text>
+                }
+                @if (Model.BloodId == 6)
+                {
+                    <text>AB-</text>
+                }
+                @if (Model.BloodId == 7)
+                {
+                    <text>0+</text>
+                }
+                @if (Model.BloodId == 8)
+                {
+                    <text>0-</text>
+                }
+
+            </div>
         </div>
 
         <button class="btn btn-danger" stype="width:130px" asp-action="Edit" asp-controller="Account" asp-route-returnUrl="@Url.Action("Edit", "Account", new { area = "" })">Обнови</button>
+        <button class="btn btn-primary" asp-area="" asp-controller="ContactUs" asp-action="ContactUs">Имам проблем</button>
         <button class="btn btn-primary" asp-action="Index" asp-controller="Home" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">Към начална страница</button>
 
     </form>

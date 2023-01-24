@@ -1,5 +1,5 @@
 using BBDS.Management.Data;
-using BBDS.Management.Extentions;
+//using BBDS.Management.Extentions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -47,6 +47,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
-app.SeedAdmin();
+//app.SeedAdmin();
 
 app.Run();
