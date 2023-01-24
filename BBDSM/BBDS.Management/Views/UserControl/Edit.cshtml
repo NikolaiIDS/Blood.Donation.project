@@ -27,6 +27,11 @@
             <input asp-for="PhoneNumber" class=" form-control" />
             <span asp-validation-for="PhoneNumber" class="text-danger"></span>
         </div>
+         <div class="mb-3 ">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class=" form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
         <div class="mb-3 ">
             <label asp-for="EGN"></label>
             <input asp-for="EGN" class=" form-control" />
@@ -57,6 +62,17 @@
             </select>
             <span asp-validation-for="@Model.BloodId" class="small text-danger"></span>
         </div>
+
+        <div class="form-group" style="padding-top: 20px;">
+            <label asp-for="@Model.GenderId">Кръвна група</label>
+            <select asp-for="@Model.GenderId" class="form-control">
+                <option value="1">Мъж</option>
+                <option value="2">Жена</option>
+               
+            </select>
+            <span asp-validation-for="@Model.GenderId" class="small text-danger"></span>
+        </div>
+
         <div style="padding-top:20px">
             <button type="submit" class="btn btn-primary" stype="width:130px">Update</button>
 

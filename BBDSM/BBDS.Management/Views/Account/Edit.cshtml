@@ -86,6 +86,19 @@
                 }
 
             </div>
+
+            <div class="mb-3">
+                <label>Пол</label><br />
+                @if (Model.GenderId == 1)
+                {
+                    <text>Мъж</text>
+                }
+                @if (Model.GenderId == 2)
+                {
+                    <text>Жена</text>
+                }
+              
+            </div>
         </div>
 
         <button class="btn btn-danger" stype="width:130px" asp-action="Edit" asp-controller="Account" asp-route-returnUrl="@Url.Action("Edit", "Account", new { area = "" })">Обнови</button>

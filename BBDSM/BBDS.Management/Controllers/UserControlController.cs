@@ -83,15 +83,16 @@ namespace BBDS.Management.Controllers
             }
             var user = await _userManager.FindByIdAsync(personFromDb.Id);
             user.UserName = personFromDb.UserName;
+            user.NormalizedUserName = personFromDb.UserName.ToUpper();
             user.PhoneNumber = personFromDb.PhoneNumber;
             user.Email = personFromDb.Email;
+            user.NormalizedEmail = personFromDb.Email.ToUpper();
             user.FirstName = personFromDb.FirstName;
             user.LastName = personFromDb.LastName;
             user.CityId = personFromDb.CityId;
             user.EGN = personFromDb.EGN;
             user.BloodTypeId = personFromDb.BloodId;
-            
-           
+            user.GenderId = personFromDb.GenderId;
 
 
             if (user == null)

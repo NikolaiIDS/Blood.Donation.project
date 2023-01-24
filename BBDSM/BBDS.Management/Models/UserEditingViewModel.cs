@@ -57,5 +57,6 @@ namespace BBDS.Management.Models
 
         public Guid CityId { get; set; }
        public List<CityViewModel> Cities { get; set; }
+        public int GenderId { get; set; }
     }
 }
