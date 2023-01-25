@@ -1,44 +1,44 @@
-﻿using System;
+﻿using BBDS.Management.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using System;
 
-//namespace BBDS.Management.Data.Configurations
-//{
-//    public class ApplicationDbInitializer
-//    {
-//        public static void Seed(IApplicationBuilder applicationBuilder)
-//        {
-//            using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
-//            {
-//                var context = serviceScope.ServiceProvider.GetService<>();
-//                context.Database.EnsureCreated();
+namespace bbds.management.data.configurations
+{
+    public static class ApplicationDbInitializer
+    {
+        public static void Seed(this ModelBuilder builder)
+        {
+            {
+                var passwordHasher = new PasswordHasher<ApplicationUser>();
 
-//                if (!context..Any())
-//                {
-//                    context.Cinemas.AddRange(new List<>()
-//                    {
-//                        new()
-//                        {
-//                            Name = "Iskra",
-//                            Logo="https://upload.wikimedia.org/wikipedia/commons/f/f8/Iskra-logo.jpg",
-//                            Description="A cinema in Veliko Tarnovo"
-//                        },
+                List<ApplicationUser> users = new List<ApplicationUser>()
+    {
+                 new ApplicationUser {
+                    UserName = "admin",
+                    NormalizedUserName = "ADMIN",
+                    Email = "admin@gmail.com",
+                    NormalizedEmail = "MEDIC@GMAIL.COMM",
+                },
 
-//                        new ()
-//                        {
-//                            Name = "Palace",
-//                            Logo="https://meetolerance.eu/wp-content/uploads/2018/11/logo-cinema-palace.png",
-//                            Description="A cinema in Europe"
-//                        },
+                new ApplicationUser {
+                    UserName = "medic",
+                    NormalizedUserName = "MEDIC",
+                    Email = "medic@gmail.com",
+                    NormalizedEmail = "MEDIC@GMAIL.COMM",
+                },
+                      new ApplicationUser {
+                    UserName = "user1",
+                    NormalizedUserName = "USER1",
+                    Email = "nikolov3007@gmail.com",
+                    NormalizedEmail = "NIKOLOV3007@GMAIL.COM",
+                },
+    };
 
-//                        new ()
-//                        {
-//                            Name = "Arena",
-//                            Logo="https://searchlogovector.com/wp-content/uploads/2018/07/arena-cinemas-logo-vector.png",
-//                            Description="A cinema in Bulgaria"
-//                        },
 
-//                    });
-//                }
-//            }
-//        }
-//    }
-//}
+                builder.Entity<ApplicationUser>().HasData(users);
+            }
+        }
+    }
+}
+
