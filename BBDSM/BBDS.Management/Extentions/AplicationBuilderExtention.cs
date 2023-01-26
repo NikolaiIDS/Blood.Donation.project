@@ -5,7 +5,7 @@ namespace BBDS.Management.Extentions
 {
     public static class applicationbuilderextension
     {
-        public static IApplicationBuilder seedadmin(this IApplicationBuilder app)
+        public static IApplicationBuilder SeedAdmin(this IApplicationBuilder app)
         {
             using IServiceScope scopedServices = app.ApplicationServices.CreateScope();
 
