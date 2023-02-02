@@ -7,7 +7,6 @@
         <hr />
     </div>
     <form id="registerForm" method="post">
-<<<<<<< Updated upstream
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="text-lg-start" style="padding-bottom: 20px;">
@@ -54,55 +53,6 @@
     </div>
 
 
-=======
-        <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="text-lg-start" style="padding-bottom: 20px;">
-            <label style="padding-left: 10px;" asp-for="@Model.Email">Email</label>
-            <input class="form-control " autocomplete="username" aria-required="true" asp-for="@Model.Email" />
-            <span asp-validation-for="@Model.Email" class="text-danger"></span>
-        </div>
-        <div class="text-lg-start" style="padding-bottom: 20px;">
-            <label style="padding-left: 10px;" asp-for="@Model.UserName">Потребителско име</label>
-            <input class="form-control " autocomplete="username" aria-required="true" asp-for="@Model.UserName" />
-            <span asp-validation-for="@Model.UserName" class="text-danger"></span>
-        </div>
-        <div class="text-lg-start" style="padding-bottom: 20px;">
-            <label style="padding-left: 10px;" asp-for="@Model.FirstName">Собствено име</label>
-            <input class="form-control " autocomplete="Собствено име" aria-required="true" asp-for="@Model.FirstName" />
-            <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
-        </div>
-        <div class="text-lg-start" style="padding-bottom: 20px;">
-            <label style="padding-left: 10px;" asp-for="@Model.LastName">Фамилно име</label>
-            <input class="form-control " autocomplete="Фамилно име" aria-required="true" asp-for="@Model.LastName" />
-            <span asp-validation-for="@Model.LastName" class="text-danger"></span>
-        </div>
-        <div class="text-lg-start" style="padding-bottom: 20px;">
-            <label style="padding-left: 10px;" asp-for="@Model.PhoneNumber">Phone Number</label>
-            <input class="form-control" aria-required="true" asp-for="@Model.PhoneNumber" />
-            <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
-        </div>
-        <div  class="text-lg-start" style="padding-bottom: 20px;">
-            <label style="padding-left: 10px;" asp-for="@Model.EGN">ЕГН</label>
-            <input class="form-control" aria-required="true" asp-for="@Model.EGN" disabled />
-            <span asp-validation-for="@Model.EGN" class="text-danger"></span>
-        </div>
-        <div>
-            <div style="padding-bottom: 20px">
-                <label>Град</label>
-                <select asp-for="CityId" class="form-control">
-                    @foreach (var item in Model.Cities)
-                    {
-                        bool isSelected = item.Id == Model.CityId;
-                        <option name="CityId" value="@item.Id" selected="@isSelected">@item.Name</option>
-                    }
-                </select>
-            </div>
-        </div>
-
-        <button class="btn btn-danger" stype="width:130px" asp-action="Edit" asp-controller="Account" asp-route-returnUrl="@Url.Action("Edit", "Account", new { area = "" })">Обнови</button>
-        <button class="btn btn-primary" asp-action="Index" asp-controller="Home" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">Към начална страница</button>
->>>>>>> Stashed changes
 
             </div>
             
