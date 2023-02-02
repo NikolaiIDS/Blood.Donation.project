@@ -41,7 +41,8 @@ namespace BBDS.Management.Controllers
                 EGN = u.EGN,
                 BloodId = u.BloodTypeId,
                 Id = u.Id,
-                CityId = u.CityId
+                CityId = u.CityId,
+                GenderId = u.GenderId
                 
             }).FirstOrDefaultAsync(u => u.Id == userId);
 
@@ -73,7 +74,8 @@ namespace BBDS.Management.Controllers
                 EGN = u.EGN,
                 BloodId = u.BloodTypeId,
                 CityId = u.CityId,
-                Id = u.Id
+                Id = u.Id,
+                GenderId = u.GenderId
             }).FirstOrDefault(u => u.Id == userId);
             if (personFromDb == null)
             {

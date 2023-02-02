@@ -57,6 +57,19 @@
       
     </div>
 
+                <div class="mb-3">
+                <label>Пол</label><br />
+                @if (Model.GenderId == 1)
+                {
+                    <text>Мъж</text>
+                }
+                @if (Model.GenderId == 2)
+                {
+                    <text>Жена</text>
+                }
+              
+            </div>
+
     <div>
         <a asp-controller="Account" asp-action="Edit" class="btn btn-danger mx-2"> <i class="bi bi-pencil-square"></i> Промени</a>
     </div>
