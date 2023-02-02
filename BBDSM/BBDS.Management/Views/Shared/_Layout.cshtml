@@ -13,44 +13,62 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">SiteNameHere</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">B.B.D.S.</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarColor01">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index">Начало</a>
                             <span class="visually-hidden">(current)</span>
 
                         </li>
                         @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Medic")))
                         {
                             <li class="nav-item">
-                                <a class="nav-link " asp-area="" asp-controller="UserControl" asp-action="Index">UserControl</a>
+                                <a class="nav-link " asp-area="" asp-controller="UserControl" asp-action="Index">Управление на потребители</a>
                             </li>
                         }
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                                <div class="dropdown-menu">
+                            <li class="nav-item">
+                                <a class="nav-link " asp-area="" asp-controller="ContactUs" asp-action="ContactUs">Свържете се с нас</a>
+                            </li>
+                        }
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item dropdown text-light" style="padding-right:40px">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Опции</a>
+                                <div class="dropdown-menu" style="padding-left: 20px">
 
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Inspect">Account</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Inspect">Акаунт</a>
 
                                 </div>
                             </li>
                         }
                     </ul>
                     <partial name="_LoginPartial" />
+                    @*   @if (User.Identity.IsAuthenticated)
+                    {
+                    <form class="d-flex">
+                    <input class="form-control me-sm-2 m-2" type="text" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                    }*@
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <form class="d-flex">
-                            <input class="form-control me-sm-2 m-2" type="text" placeholder="Search">
-                            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                        <form class="form-inline" style="padding-left: 20px; padding-top: 10px;" asp-action="Logout" asp-controller="Account" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            @* <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>*@
+                            <button type="submit" class="buttonCircle">
+                                <span class="text">Logout</span>
+                                <i class="bi bi-check2 icon"></i>
+                            </button>
                         </form>
+
                     }
-                </div>
+
+            </div>
             </div>
         </nav>
     </header>
@@ -62,7 +80,7 @@
 
     <footer class="border-top footer text-muted ">
         <div class="container">
-           @* &copy; 2022 - BBDS.Management*@
+            @* &copy; 2022 - BBDS.Management*@
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

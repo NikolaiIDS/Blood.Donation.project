@@ -2,6 +2,7 @@
 
 <link rel="stylesheet" href="~/css/submitButton.css" asp-append-version="true" />
 
+
 <div class=" border p-3 mt-4">
     <div class=" row pb-2">
         <h2 class=" text-primary">Преглеждане на акаунт </h2>
@@ -23,29 +24,54 @@
     <div class="mb-3 ">
         <label asp-for="PhoneNumber"></label>
         <input asp-for="PhoneNumber" class=" form-control" disabled />
-    </div>  
+    </div>
 
     <div class="mb-3">
         <label asp-for="EGN"></label>
         <input asp-for="EGN" class=" form-control" disabled />
     </div>
-    
+
     <div style="padding-bottom: 20px">
-        <select >
+        <label>Град</label>
+        <select asp-for="CityId" class="form-control" disabled>
             @foreach (var item in Model.Cities)
             {
+
                 bool isSelected = item.Id == Model.CityId;
-                <option value="@item.Id" selected="@isSelected" disabled>@item.Name</option>
-                
+                <option name="CityId" value="@item.Id" selected="@isSelected">@item.Name</option>
             }
-        </select>  
+        </select>
+
     </div>
 
-    <div>
-        <a asp-controller="Account" asp-action="Edit"
-           class="btn btn-danger mx-2"> <i class="bi bi-pencil-square"></i> Промени</a>
+    <div class="mb-3">
+        <label>Кръвна група</label><br/>
+       @if (Model.BloodId == 1) {<text>A+</text>}
+       @if (Model.BloodId == 2) {<text>A-</text>}
+       @if (Model.BloodId == 3) {<text>B+</text>}
+       @if (Model.BloodId == 4) {<text>B-</text>}
+       @if (Model.BloodId == 5) {<text>AB+</text>}
+       @if (Model.BloodId == 6) {<text>AB-</text>}
+       @if (Model.BloodId == 7) {<text>0+</text>}
+       @if (Model.BloodId == 8) {<text>0-</text>}
+      
+    </div>
 
-        <button class="btn btn-primary" asp-action="Index" asp-controller="Home" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">Назад</button>
+                <div class="mb-3">
+                <label>Пол</label><br />
+                @if (Model.GenderId == 1)
+                {
+                    <text>Мъж</text>
+                }
+                @if (Model.GenderId == 2)
+                {
+                    <text>Жена</text>
+                }
+              
+            </div>
+
+    <div>
+        <a asp-controller="Account" asp-action="Edit" class="btn btn-danger mx-2"> <i class="bi bi-pencil-square"></i> Промени</a>
     </div>
 
 </div>
@@ -60,6 +86,6 @@
 
 @section Scripts{
     @{
-    <partial name="_ValidationScriptsPartial" />
+        <partial name="_ValidationScriptsPartial" />
     }
     }

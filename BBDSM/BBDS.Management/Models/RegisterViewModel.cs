@@ -44,6 +44,8 @@ namespace BBDS.Management.Models
         public string EGN { get; set; } = null!;
         public int BloodId { get; set; }
 
+        public int GenderId { get; set; }
+
         public Guid CityId { get; set; }
     }
 }
