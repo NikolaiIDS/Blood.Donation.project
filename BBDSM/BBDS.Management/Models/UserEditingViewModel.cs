@@ -9,7 +9,7 @@ namespace BBDS.Management.Models
             Cities = new List<CityViewModel>();
         }
 
-        public string Id { get; set; }
+        public string Id { get; set; } = null!;
 
         [Required]
         [MaxLength(20)]
@@ -53,7 +53,7 @@ namespace BBDS.Management.Models
 
         public int BloodId { get; set; }
 
-        public string CityName { get; set; }
+        public string CityName { get; set; } = null!;
 
         public Guid CityId { get; set; }
        public List<CityViewModel> Cities { get; set; }
