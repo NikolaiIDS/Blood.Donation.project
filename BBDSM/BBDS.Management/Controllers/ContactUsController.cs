@@ -50,6 +50,7 @@ namespace BBDS.Management.Controllers
             {
                 ViewBag.Message = ex.Message.ToString();
             }
+            TempData["success"] = "Свързахте се с нас успешно!";
             return View();
         }
     }

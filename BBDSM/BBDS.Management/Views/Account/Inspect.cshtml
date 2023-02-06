@@ -1,7 +1,10 @@
 ﻿@model UserEditingViewModel
 
 <link rel="stylesheet" href="~/css/submitButton.css" asp-append-version="true" />
-
+@if (TempData["success"] !=null)
+{
+    <h1>@TempData["success"]</h1>
+}
 
 <div class=" border p-3 mt-4">
     <div class=" row pb-2">

@@ -43,7 +43,7 @@ namespace BBDS.Management.Controllers
                 Id = u.Id,
                 CityId = u.CityId,
                 GenderId = u.GenderId
-                
+
             }).FirstOrDefaultAsync(u => u.Id == userId);
 
             if (personFromDb == null)
@@ -77,6 +77,7 @@ namespace BBDS.Management.Controllers
                 Id = u.Id,
                 GenderId = u.GenderId
             }).FirstOrDefault(u => u.Id == userId);
+
             if (personFromDb == null)
             {
                 return NotFound();
@@ -87,7 +88,7 @@ namespace BBDS.Management.Controllers
                 Name = c.CityName,
                 Id = c.Id
             }).ToListAsync();
-
+            TempData["warning"] = "Провери преди да обновиш!";
             return View(personFromDb);
         }
 
@@ -124,6 +125,7 @@ namespace BBDS.Management.Controllers
             }
 
             _db.Update(user);
+            TempData["success"] = "Акаунтът бе успешно подновен!";
             await _db.SaveChangesAsync();
             return RedirectToAction("Edit");
         }
@@ -168,7 +170,7 @@ namespace BBDS.Management.Controllers
 
             if (result.Succeeded)
             {
-                await userManager.AddToRoleAsync(user,"User");
+                await userManager.AddToRoleAsync(user, "User");
                 return RedirectToAction(nameof(AccountController.Login), "Account");
             }
 
@@ -176,7 +178,7 @@ namespace BBDS.Management.Controllers
             {
                 ModelState.AddModelError("", item.Description);
             }
-
+            TempData["success"] = "Регистрирахте се успешно!";
             return View(model);
         }
 
@@ -208,10 +210,12 @@ namespace BBDS.Management.Controllers
             if (user != null)
             {
                 var result = await signInManager.PasswordSignInAsync(user, model.Password, false, false);
-
+                TempData["success"] = "Влязохте успешно!";
                 if (result.Succeeded)
                 {
+
                     return RedirectToAction(nameof(HomeController.Index), "Home");
+
                 }
             }
 
@@ -223,6 +227,7 @@ namespace BBDS.Management.Controllers
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
+            TempData["success"] = "Излязохте успешно!";
 
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }

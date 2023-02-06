@@ -68,6 +68,7 @@ namespace BBDS.Management.Controllers
             {
                 return NotFound();
             }
+            TempData["warning"] = "Внимавай с данните на потребителите!";
             return View(personFromDb);
         }
 
@@ -102,6 +103,7 @@ namespace BBDS.Management.Controllers
 
             _db.Update(user);
             await _db.SaveChangesAsync();
+            TempData["success"] = "Потребителският профил бе обновен успешно!";
             return RedirectToAction("Index");
         }
 
@@ -151,6 +153,7 @@ namespace BBDS.Management.Controllers
             //}
             _db.Remove(user);
             await _db.SaveChangesAsync();
+            TempData["error"] = "Потребителят бе изтрит успешно!";
             return RedirectToAction("Index");
         }
     }

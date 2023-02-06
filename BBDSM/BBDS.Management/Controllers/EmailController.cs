@@ -47,7 +47,9 @@ namespace BBDS.Management.Controllers
             smtp.Credentials = credential;
 
             //Send email
+            
             smtp.Send(message);
+            TempData["success"] = "Съобщението бе изпратено успешно!";
             return RedirectToAction("Index", "Home");
         }
     }
