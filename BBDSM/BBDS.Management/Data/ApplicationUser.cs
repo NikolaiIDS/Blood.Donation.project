@@ -10,6 +10,10 @@ namespace BBDS.Management.Data
 {
     public class ApplicationUser : IdentityUser
     {
+        public ApplicationUser()
+        {
+            UsersAcceptedRequest = new HashSet<UsersAcceptedRequests>();
+        }
         [Required]
         [MaxLength(20, ErrorMessage = "Собственото име трябва да е по-малко от 20 символа!")]
         [MinLength(3, ErrorMessage = "Собственото име трябва да е повече от 2 символа!")]
@@ -34,5 +38,8 @@ namespace BBDS.Management.Data
         [ForeignKey(nameof(City))]
         public Guid CityId { get; set; }
         public City City { get; set; } = null!;
+
+        [InverseProperty(nameof(UsersAcceptedRequests.User))]
+        public ICollection<UsersAcceptedRequests> UsersAcceptedRequest { get; set; }
     }
 }

@@ -43,7 +43,6 @@ namespace BBDS.Management.Controllers
                 Id = u.Id,
                 CityId = u.CityId,
                 GenderId = u.GenderId
-
             }).FirstOrDefaultAsync(u => u.Id == userId);
 
             if (personFromDb == null)

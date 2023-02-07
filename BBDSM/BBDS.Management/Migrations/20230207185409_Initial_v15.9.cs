@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BBDS.Management.Migrations
 {
-    public partial class lmao : Migration
+    public partial class Initial_v159 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -77,6 +77,7 @@ namespace BBDS.Management.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     EGN = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GenderId = table.Column<int>(type: "int", nullable: false),
                     BloodTypeId = table.Column<int>(type: "int", nullable: false),
                     CityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -105,6 +106,32 @@ namespace BBDS.Management.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_AspNetUsers_Cities_CityId",
+                        column: x => x.CityId,
+                        principalTable: "Cities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Requests",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CountOfRequestedUsers = table.Column<int>(type: "int", nullable: false),
+                    BloodTypeId = table.Column<int>(type: "int", nullable: false),
+                    CityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Requests", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Requests_BloodTypes_BloodTypeId",
+                        column: x => x.BloodTypeId,
+                        principalTable: "BloodTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Requests_Cities_CityId",
                         column: x => x.CityId,
                         principalTable: "Cities",
                         principalColumn: "Id",
@@ -196,6 +223,30 @@ namespace BBDS.Management.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "UsersAcceptedRequests",
+                columns: table => new
+                {
+                    RequestId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UsersAcceptedRequests", x => new { x.UserId, x.RequestId });
+                    table.ForeignKey(
+                        name: "FK_UsersAcceptedRequests_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_UsersAcceptedRequests_Requests_RequestId",
+                        column: x => x.RequestId,
+                        principalTable: "Requests",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.InsertData(
                 table: "BloodTypes",
                 columns: new[] { "Id", "TypeName" },
@@ -209,6 +260,21 @@ namespace BBDS.Management.Migrations
                     { 6, "AB-" },
                     { 7, "0+" },
                     { 8, "0-" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Cities",
+                columns: new[] { "Id", "CityName" },
+                values: new object[,]
+                {
+                    { new Guid("00182e26-fd34-436a-988a-69a8ce6ceb16"), "Горна Оряховица" },
+                    { new Guid("3a4dd904-d3b8-4adb-b6a6-4e42267c9683"), "София" },
+                    { new Guid("56393f6b-d016-4583-b536-726ad925ed8a"), "Левски" },
+                    { new Guid("65078407-8ae3-4872-a807-ce3484306a99"), "Варна" },
+                    { new Guid("72316b2d-31a5-4ba8-8609-13719f7cce98"), "Велиоко Търново" },
+                    { new Guid("7aac1f3b-ef3e-461e-8aab-857846f67fa4"), "Дряново" },
+                    { new Guid("d0e60734-f384-4ccb-b472-61e8e9629e48"), "Враца" },
+                    { new Guid("f40854ce-7d63-46a4-bb60-07dde1a4705e"), "Пловдив" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -259,6 +325,21 @@ namespace BBDS.Management.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Requests_BloodTypeId",
+                table: "Requests",
+                column: "BloodTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Requests_CityId",
+                table: "Requests",
+                column: "CityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UsersAcceptedRequests_RequestId",
+                table: "UsersAcceptedRequests",
+                column: "RequestId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -279,10 +360,16 @@ namespace BBDS.Management.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "UsersAcceptedRequests");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Requests");
 
             migrationBuilder.DropTable(
                 name: "BloodTypes");

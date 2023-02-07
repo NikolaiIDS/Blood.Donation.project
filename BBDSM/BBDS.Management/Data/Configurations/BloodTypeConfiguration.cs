@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using BBDS.Management.Data;
 namespace BBDS.Management.Data.Configurations
 
 {

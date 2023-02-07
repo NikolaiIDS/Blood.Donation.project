@@ -231,6 +231,45 @@ namespace BBDS.Management.Migrations
                         });
                 });
 
+            modelBuilder.Entity("BBDS.Management.Data.Request", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("BloodTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("CityId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("CountOfRequestedUsers")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BloodTypeId");
+
+                    b.HasIndex("CityId");
+
+                    b.ToTable("Requests");
+                });
+
+            modelBuilder.Entity("BBDS.Management.Data.UsersAcceptedRequests", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<Guid>("RequestId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("UserId", "RequestId");
+
+                    b.HasIndex("RequestId");
+
+                    b.ToTable("UsersAcceptedRequests");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -387,6 +426,44 @@ namespace BBDS.Management.Migrations
                     b.Navigation("City");
                 });
 
+            modelBuilder.Entity("BBDS.Management.Data.Request", b =>
+                {
+                    b.HasOne("BBDS.Management.Data.BloodType", "BloodType")
+                        .WithMany("Requests")
+                        .HasForeignKey("BloodTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BBDS.Management.Data.City", "City")
+                        .WithMany("Requests")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BloodType");
+
+                    b.Navigation("City");
+                });
+
+            modelBuilder.Entity("BBDS.Management.Data.UsersAcceptedRequests", b =>
+                {
+                    b.HasOne("BBDS.Management.Data.Request", "Request")
+                        .WithMany("UsersAcceptedRequest")
+                        .HasForeignKey("RequestId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("BBDS.Management.Data.ApplicationUser", "User")
+                        .WithMany("UsersAcceptedRequest")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Request");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -438,14 +515,28 @@ namespace BBDS.Management.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("BBDS.Management.Data.ApplicationUser", b =>
+                {
+                    b.Navigation("UsersAcceptedRequest");
+                });
+
             modelBuilder.Entity("BBDS.Management.Data.BloodType", b =>
                 {
+                    b.Navigation("Requests");
+
                     b.Navigation("Users");
                 });
 
             modelBuilder.Entity("BBDS.Management.Data.City", b =>
                 {
+                    b.Navigation("Requests");
+
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("BBDS.Management.Data.Request", b =>
+                {
+                    b.Navigation("UsersAcceptedRequest");
                 });
 #pragma warning restore 612, 618
         }
