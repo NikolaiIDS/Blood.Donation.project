@@ -33,6 +33,7 @@ namespace BBDS.Management.Controllers
                 CityId = u.CityId,
                 BloodId = u.BloodTypeId
             });
+
             return View(objRegisterList);
         }
 
