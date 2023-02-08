@@ -161,7 +161,8 @@ namespace BBDS.Management.Controllers
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 BloodTypeId = model.BloodId,
-                CityId = model.CityId
+                CityId = model.CityId,
+                GenderId = model.GenderId
             };
 
 
