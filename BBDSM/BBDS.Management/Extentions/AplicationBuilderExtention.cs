@@ -38,10 +38,10 @@ namespace BBDS.Management.Extentions
                 await userManager.AddToRoleAsync(admin, "Admin");
 
                 ApplicationUser medic = await userManager.FindByNameAsync("medic");
-                await userManager.AddToRoleAsync(medic, "Medic");
+                await userManager.AddToRoleAsync(admin, "Medic");
 
                 ApplicationUser testingUser = await userManager.FindByNameAsync("user1");
-                await userManager.AddToRoleAsync(testingUser, "User");
+                await userManager.AddToRoleAsync(admin, "User");
             })
             .GetAwaiter()
             .GetResult();
