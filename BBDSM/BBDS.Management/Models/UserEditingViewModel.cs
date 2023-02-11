@@ -56,7 +56,12 @@ namespace BBDS.Management.Models
         public string CityName { get; set; } = null!;
 
         public Guid CityId { get; set; }
-       public List<CityViewModel> Cities { get; set; }
+        public List<CityViewModel> Cities { get; set; }
         public int GenderId { get; set; }
+
+        public Guid FilterCityId { get; set; }
+
+        public int FilterBloodId { get; set; }
+        public int PeopleToView { get; set; }
     }
 }

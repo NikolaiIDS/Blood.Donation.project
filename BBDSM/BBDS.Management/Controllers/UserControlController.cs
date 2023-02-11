@@ -19,20 +19,31 @@ namespace BBDS.Management.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(/*FilteringViewModel filters*/)
         {
-            IEnumerable<UserEditingViewModel> objRegisterList =  _db.Users.Select(u => new UserEditingViewModel
-            {
-                UserName = u.UserName,
-                Email = u.Email,
-                PhoneNumber = u.PhoneNumber,
-                Id = u.Id,                
-                EGN = u.EGN,
-                FirstName = u.FirstName,
-                LastName = u.LastName,
-                CityId = u.CityId,
-                BloodId = u.BloodTypeId
-            });
+            //filters.Cities = await _db.Cities.Select(c => new CityViewModel
+            //{
+            //    Name = c.CityName,
+            //    Id = c.Id
+            //}).ToListAsync();
+            IEnumerable<UserEditingViewModel> objRegisterList = _db.Users
+                //.Where(w => w.BloodTypeId == filters.BloodId)
+                //.Where(c => c.CityId == filters.CityId)
+                //.Take(filters.PeopleToView)
+                //.OrderBy(o => filters.CityName)
+                .Select(u => new UserEditingViewModel
+                {
+                    UserName = u.UserName,
+                    Email = u.Email,
+                    PhoneNumber = u.PhoneNumber,
+                    Id = u.Id,
+                    EGN = u.EGN,
+                    FirstName = u.FirstName,
+                    LastName = u.LastName,
+                    CityId = u.CityId,
+                    BloodId = u.BloodTypeId
+                });
+
             return View(objRegisterList);
         }
 
@@ -134,7 +145,7 @@ namespace BBDS.Management.Controllers
         //POST
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize (Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeletePOST(UserDeleteViewModel obj)
         {
             var user = await _userManager.FindByIdAsync(obj.Id);
@@ -146,7 +157,7 @@ namespace BBDS.Management.Controllers
             {
                 return NotFound();
             }
-            
+
             //if (!ModelState.IsValid)
             //{
             //    return View(obj);

@@ -31,7 +31,8 @@ namespace BBDS.Management.Controllers
         {
 
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            var personFromDb = await _db.Users.Select(u => new UserEditingViewModel
+            var personFromDb = await _db.Users
+                .Select(u => new UserEditingViewModel
             {
                 UserName = u.UserName,
                 Email = u.Email,

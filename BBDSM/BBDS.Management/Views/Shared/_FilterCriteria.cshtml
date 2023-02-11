@@ -1,0 +1,29 @@
+﻿@model FilteringViewModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<div class="form-group" style="padding-bottom: 20px;">
+    <label asp-for="@Model.BloodId">Кръвна група</label>
+    <select asp-for="@Model.BloodId" class="form-control">
+        <option value="1">A+</option>
+        <option value="2">A-</option>
+        <option value="3">B+</option>
+        <option value="4">B-</option>
+        <option value="5">AB+</option>
+        <option value="6">AB-</option>
+        <option value="7">0+</option>
+        <option value="8">0-</option>
+    </select>
+    <span asp-validation-for="@Model.BloodId" class="small text-danger"></span>
+
+            <label>Град</label>
+        <select asp-for="CityId" class="form-control" disabled>
+            @foreach (var item in Model.Cities)
+            {
+
+                bool isSelected = item.Id == Model.CityId;
+                <option name="CityId" value="@item.Id" selected="@isSelected">@item.Name</option>
+            }
+        </select>
+    </div>
+    <a asp-controller="UserControl" asp-action="Index" class="btn btn-danger mx-2"> <i class="bi bi-pencil-square"></i>Обнови</a>
