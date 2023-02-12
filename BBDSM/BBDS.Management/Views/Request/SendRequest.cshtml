@@ -1,0 +1,40 @@
+﻿@using BBDS.Management.Models
+@model RequestViewModel
+@{
+    ViewData["Title"] = "Създаване на заявка";
+}
+<form id="requestFrom" method="post">
+    
+<div>
+      <div style="padding-bottom: 20px">
+        <label>Кръвна група</label>
+        <select asp-for="BloodId" class="form-control">
+            @foreach (var item in Model.BloodTypes)
+            {
+                bool isSelected = item.Id == Model.BloodId;
+                <option name="BloodId" value="@item.Id" selected="@isSelected">@item.Name</option>
+            }
+        </select>
+    </div>
+</div>
+
+<div>
+    <div class="text-lg-start" style="padding-bottom: 20px;">
+        <label style="padding-left: 10px;" asp-for="@Model.PeopleToView">Желан брой доброволци</label>
+        <input class="form-control" aria-required="true" asp-for="@Model.PeopleToView" />
+        <span asp-validation-for="@Model.PeopleToView" class="text-danger"></span>
+    </div>
+</div>
+
+    <div style="padding-bottom: 20px">
+        <label>Град</label>
+        <select asp-for="CityId" class="form-control">
+            @foreach (var item in Model.Cities)
+            {
+                bool isSelected = item.Id == Model.CityId;
+                <option name="CityId" value="@item.Id" selected="@isSelected">@item.Name</option>
+            }
+        </select>
+    </div>
+     <button class="btn btn-danger" stype="width:130px" asp-action="SendRequestAsyncPost" asp-controller="Request" asp-route-returnUrl="@Url.Action("SendRequestAsyncPost", "Request", new { area = "" })">Обнови</button>
+</form>

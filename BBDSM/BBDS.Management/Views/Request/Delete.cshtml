@@ -1,0 +1,13 @@
+﻿@model RequestViewModel
+<form id="requestFrom" method="post">
+<div class="card">
+    <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.clker.com%2Fcliparts%2FA%2Fg%2Fr%2FN%2FB%2FM%2Fblue-cross-md.png&f=1&nofb=1&ipt=ca47ee144fc7db6d9d149ed6832499a936c8e5c259658f5426ac2b0c4fe2050a&ipo=images" alt="Avatar" style="width:10%">
+    <div class="container">
+        <h4><b>Желана кръвна група: @Model.BloodTypeName</b></h4>
+        <p>Желан брой хора: @Model.PeopleToView</p>
+        <p>Град: @Model.CityName</p>
+        <button type="submit" class="btn btn-danger" stype="width:130px">Изтрий</button>
+    </div>
+   
+</div>
+</form>

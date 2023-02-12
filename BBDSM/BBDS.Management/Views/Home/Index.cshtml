@@ -1,9 +1,29 @@
-﻿@{
+﻿@model IEnumerable<RequestViewModel>
+@{
     ViewData["Title"] = "Home Page";
 }
-<div class="text-center">
 
-  
-    <h1 class="display-4">Bobb</h1>
+<h1 class="display-4">Bobb</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <form id="requestFrom" method="post">
+            @foreach (var item in Model)
+            {
+                <div class="card">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.clker.com%2Fcliparts%2FA%2Fg%2Fr%2FN%2FB%2FM%2Fblue-cross-md.png&f=1&nofb=1&ipt=ca47ee144fc7db6d9d149ed6832499a936c8e5c259658f5426ac2b0c4fe2050a&ipo=images" alt="Avatar" style="width:10%">
+                    <div class="container">
+                        <h4><b>Желана кръвна група: @item.BloodTypeName</b></h4>
+                        <p>Желан брой хора: @item.PeopleToView</p>
+                        <p>Град: @item.CityName</p>
+                        <a asp-controller="Request" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger "> <i class="bi bi-person-dash-fill"></i> Изтрий</a>
+                    </div>
+                </div>
+            }
+        </form>
+    }
+
+
+    
 </div>

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BBDS.Management.Data
 {
@@ -9,6 +10,12 @@ namespace BBDS.Management.Data
             UsersAcceptedRequest = new HashSet<UsersAcceptedRequests>();
         }
         public Guid Id { get; set; }
+
+        [MaxLength(3)]
+        public string BloodTypeName { get; set; }
+        
+        [MaxLength(50)]
+        public string CityName { get; set; }
 
         public int CountOfRequestedUsers { get; set; }
 
