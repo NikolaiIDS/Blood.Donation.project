@@ -25,10 +25,11 @@ namespace BBDS.Management.Controllers
         {
             if (User != null && User.Identity != null)
             {
+
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
                 var user = await _userManager.FindByIdAsync(userId);
                 IEnumerable<RequestViewModel> objRegisterList = _db.Requests
-                   .Where(w => w.BloodTypeId == user.BloodTypeId)
+                   .Where(w => w.BloodTypeName.Contains( user.BloodTypeId.ToString()))
                    .Where(c => c.CityId == user.CityId)
                    .Select(u => new RequestViewModel
                    {

@@ -47,11 +47,11 @@ namespace BBDS.Management.Controllers
             }
             var request = _db.Set<Request>();
 
-            model.BloodTypes = await _db.BloodTypes.Select(c => new BloodTypeViewModel
-            {
-                Name = c.TypeName,
-                Id = c.Id
-            }).ToListAsync();
+            // model.BloodTypes = await _db.BloodTypes.Select(c => new BloodTypeViewModel
+            // {
+            //     Name = c.TypeName,
+            //     Id = c.Id
+            // }).ToListAsync();
 
             model.Cities = await _db.Cities.Select(c => new CityViewModel
             {
@@ -59,13 +59,34 @@ namespace BBDS.Management.Controllers
                 Id = c.Id
             }).ToListAsync();
 
-            foreach (var item in model.BloodTypes)
+            // foreach (var item in model.BloodTypes)
+            // {
+            switch (model.BloodId)
             {
-                if (item.Id == model.BloodId)
-                {
-                    model.BloodTypeName = item.Name;
+                case 1:
+                    model.BloodTypeName = "7,1,8,2";
                     break;
-                }
+                case 2:
+                    model.BloodTypeName = "8,2";
+                    break;
+                case 3:
+                    model.BloodTypeName = "7,3,8,4";
+                    break;
+                case 4:
+                    model.BloodTypeName = "8,4";
+                    break;
+                case 5:
+                    model.BloodTypeName = "7,1,3,5,8,2,4,6";
+                    break;
+                case 6:
+                    model.BloodTypeName = "8,2,4,6";
+                    break;
+                case 7:
+                    model.BloodTypeName = "7,8";
+                    break;
+                case 8:
+                    model.BloodTypeName = "8";
+                    break;
             }
 
             foreach (var item in model.Cities)
@@ -77,14 +98,14 @@ namespace BBDS.Management.Controllers
                 }
             }
 
-            request.Add(new Request { BloodTypeId = model.BloodId,CityName = model.CityName, CityId = model.CityId, BloodTypeName = model.BloodTypeName, CountOfRequestedUsers = model.PeopleToView });;
+            request.Add(new Request { BloodTypeId = model.BloodId, CityName = model.CityName, CityId = model.CityId, BloodTypeName = model.BloodTypeName, CountOfRequestedUsers = model.PeopleToView }); ;
             TempData["success"] = "Заявката бе успешно създадена!";
             await _db.SaveChangesAsync();
             return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin,Medic")] 
+        [Authorize(Roles = "Admin,Medic")]
 
         public async Task<IActionResult> Delete(Guid id)
         {
@@ -92,7 +113,7 @@ namespace BBDS.Management.Controllers
             {
                 return NotFound();
             }
-            var requestFromDb =  _db.Requests.Select(u => new RequestViewModel
+            var requestFromDb = _db.Requests.Select(u => new RequestViewModel
             {
                 BloodId = u.BloodTypeId,
                 BloodTypeName = u.BloodTypeName,
@@ -128,7 +149,7 @@ namespace BBDS.Management.Controllers
             _db.Remove(request);
             await _db.SaveChangesAsync();
             TempData["error"] = "Заявката бе изтрита успешно!";
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

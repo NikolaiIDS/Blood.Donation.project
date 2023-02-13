@@ -11,7 +11,7 @@ namespace BBDS.Management.Data
         }
         public Guid Id { get; set; }
 
-        [MaxLength(3)]
+        [MaxLength(50)]
         public string BloodTypeName { get; set; }
         
         [MaxLength(50)]
