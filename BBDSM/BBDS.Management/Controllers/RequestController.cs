@@ -18,6 +18,29 @@ namespace BBDS.Management.Controllers
             this._db = _db;
             this._userManager = _userManager;
         }
+        [Authorize(Roles = "Admin,Medic")]
+        public async Task<IActionResult> Index()
+        {
+
+            CombinedViewModel forView = new CombinedViewModel();
+            forView.Cities = await _db.Cities.Select(c => new CityViewModel
+            {
+                Name = c.CityName,
+                Id = c.Id
+            }).ToListAsync();
+            forView.Requests = await _db.Requests.Select(u => new RequestViewModel
+            {
+                Id = u.Id,
+                CityId = u.CityId,
+                CityName = u.CityName,
+                BloodId = u.BloodTypeId,
+                BloodTypeName = u.BloodTypeName,
+                PeopleToView = u.CountOfRequestedUsers
+            }).ToListAsync();
+
+
+            return View(forView);
+        }
 
         [HttpGet]
         public async Task<IActionResult> SendRequestAsync()
@@ -98,7 +121,7 @@ namespace BBDS.Management.Controllers
                 }
             }
 
-            request.Add(new Request { BloodTypeId = model.BloodId, CityName = model.CityName, CityId = model.CityId, BloodTypeName = model.BloodTypeName, CountOfRequestedUsers = model.PeopleToView }); ;
+            request.Add(new Request { BloodTypeId = model.BloodId, CityName = model.CityName, CityId = model.CityId, BloodTypeName = model.BloodTypeName, CountOfRequestedUsers = model.PeopleToView });
             TempData["success"] = "Заявката бе успешно създадена!";
             await _db.SaveChangesAsync();
             return RedirectToAction("Index", "Home");
@@ -145,10 +168,59 @@ namespace BBDS.Management.Controllers
             {
                 return NotFound();
             }
+            List<UsersAcceptedRequests> usersAccepted = _db.UsersAcceptedRequests
+                .Where(u => u.RequestId == obj.Id)
+                .Select(s => new UsersAcceptedRequests
+                {
+                    RequestId = s.RequestId,
+                    UserId = s.UserId
+                }).ToList();
+
+            foreach (var item in usersAccepted)
+            {
+                _db.Remove(item);
+            }
 
             _db.Remove(request);
             await _db.SaveChangesAsync();
             TempData["error"] = "Заявката бе изтрита успешно!";
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        public async Task<IActionResult> UserAcceptRequest(Guid Id)
+        {
+            string getUserId = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
+            var user = _db.Set<UsersAcceptedRequests>(); //create variable
+            user.Add(new UsersAcceptedRequests { RequestId = Id, UserId = getUserId }); //map avariable properties
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var acceptedRequestDb = _db.Requests
+                .Where(b => b.Id == Id)
+                .Select(u => new Request
+                {
+                    Id = u.Id,
+                    CityId = u.CityId,
+                    CityName = u.CityName,
+                    BloodTypeId = u.BloodTypeId,
+                    BloodTypeName = u.BloodTypeName,
+                    CountOfRequestedUsers = u.CountOfRequestedUsers
+                }).First();
+
+            if (acceptedRequestDb.CountOfRequestedUsers == 0)
+            {
+                return NotFound();
+            }
+            else acceptedRequestDb.CountOfRequestedUsers--;
+
+
+
+            _db.Update(acceptedRequestDb);
+            TempData["success"] = "Заявката бе успешно приета!";
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index", "Home");
         }
     }

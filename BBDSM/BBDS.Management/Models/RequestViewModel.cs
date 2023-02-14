@@ -1,4 +1,6 @@
-﻿namespace BBDS.Management.Models
+﻿using BBDS.Management.Data;
+
+namespace BBDS.Management.Models
 {
     public class RequestViewModel
     {
@@ -11,5 +13,6 @@
         public List<BloodTypeViewModel> BloodTypes { get; set; }
         public string BloodTypeName { get; set; }
         public int PeopleToView { get; set; }
+      
     }
 }

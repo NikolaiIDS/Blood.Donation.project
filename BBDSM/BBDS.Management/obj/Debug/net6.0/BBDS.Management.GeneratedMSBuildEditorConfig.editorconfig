@@ -51,8 +51,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVxdWVzdFxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Request/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVxdWVzdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Request/SendRequest.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVxdWVzdFxTZW5kUmVxdWVzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Request/UserAcceptRequest.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVxdWVzdFxVc2VyQWNjZXB0UmVxdWVzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/Error.cshtml]

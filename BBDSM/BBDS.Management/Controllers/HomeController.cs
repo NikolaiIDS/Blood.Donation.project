@@ -23,13 +23,23 @@ namespace BBDS.Management.Controllers
 
         public async Task<IActionResult> Index()
         {
-            if (User != null && User.Identity != null)
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId!=null)
             {
 
-                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
+                
                 var user = await _userManager.FindByIdAsync(userId);
-                IEnumerable<RequestViewModel> objRegisterList = _db.Requests
-                   .Where(w => w.BloodTypeName.Contains( user.BloodTypeId.ToString()))
+                
+                List<UsersAcceptedRequests> usersHasAccepted = _db.UsersAcceptedRequests
+              .Where(u => u.UserId == userId)
+              .Select(s => new UsersAcceptedRequests
+              {
+                  RequestId = s.RequestId,
+                  UserId = s.UserId
+              }).ToList();
+
+                List<RequestViewModel> objRegisterList = _db.Requests
+                   .Where(w => w.BloodTypeName.Contains(user.BloodTypeId.ToString()))
                    .Where(c => c.CityId == user.CityId)
                    .Select(u => new RequestViewModel
                    {
@@ -38,9 +48,20 @@ namespace BBDS.Management.Controllers
                        BloodId = u.BloodTypeId,
                        PeopleToView = u.CountOfRequestedUsers,
                        Id = u.Id
-                   }); // selects requests with same BloodType and City as the user's
+                   }).ToList(); // selects requests with same BloodType and City as the user's
 
-                return View(objRegisterList);
+                
+
+                CombinedViewModel combined = new CombinedViewModel();
+                combined.Requests = objRegisterList;
+                combined.UsersAcceptedRequests = usersHasAccepted;
+                combined.Cities = _db.Cities.Select(c => new CityViewModel
+                {
+                    Name = c.CityName,
+                    Id = c.Id
+                }).ToList();
+
+                return View(combined);
             }
             else return View();
 
