@@ -1,94 +1,61 @@
 ﻿@model List<UserEditingViewModel>
 
-<table class="table table-bordered table-striped" style="width : 100%">
-    <thead>
-        <tr>
-            <th>
-                Данни на потребителя
-            </th>
-
-            @if (User.IsInRole("Medic"))
-            {
-                <th>
-                    Изпрати имейл
-                </th>
-            }
-            @if (User.IsInRole("Admin"))
-            {
-                <th>
-                    Управление
-                </th>
-            }
-
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div>
+    <table class="table table-bordered table-striped" style="width : 100%">
+        <thead>
             <tr>
-                <td width="80%">
-                    @item.UserName <br />
-                    @item.FirstName <br />
-                    @item.LastName <br />
-                    @item.EGN <br />
-                    <div class="mb-3">
-                        <label>Кръвна група</label><br />
-                        @if (item.BloodId == 1)
-                        {
-                            <text>A+</text>
-                        }
-                        @if (item.BloodId == 2)
-                        {
-                            <text>A-</text>
-                        }
-                        @if (item.BloodId == 3)
-                        {
-                            <text>B+</text>
-                        }
-                        @if (item.BloodId == 4)
-                        {
-                            <text>B-</text>
-                        }
-                        @if (item.BloodId == 5)
-                        {
-                            <text>AB+</text>
-                        }
-                        @if (item.BloodId == 6)
-                        {
-                            <text>AB-</text>
-                        }
-                        @if (item.BloodId == 7)
-                        {
-                            <text>0+</text>
-                        }
-                        @if (item.BloodId == 8)
-                        {
-                            <text>0-</text>
-                        }
+                <th>
+                    Данни на потребителя
+                </th>
 
-                    </div>
-                </td>
+                @if (User.IsInRole("Medic"))
+                {
+                    <th>
+                        Изпрати имейл
+                    </th>
+                }
+                @if (User.IsInRole("Admin"))
+                {
+                    <th>
+                        Управление
+                    </th>
+                }
 
-                <td>
-                    <div class="btn-group" role="group">
-                        @if (User.IsInRole("Medic"))
-                        {
-                            <form method="post" asp-controller="Email" asp-action="SendEmail" asp-route-id="@item.Email">
-                                @*  <i class="bi bi-pencil-square"></i>*@
-                                <input type="hidden" value="@item.Email" name="toEmail" />
-                                <input class="btn button-17" type="submit" value="Изпрати заявка" />
-                            </form>
-                        }
-
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <a asp-controller="UserControl" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary "> <i class="bi bi-pencil-square"></i> Промени</a>
-                            <a asp-controller="UserControl" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger "> <i class="bi bi-person-dash-fill"></i> Изтрий</a>
-                        }
-                    </div>
-                </td>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td width="80%">
+                        @item.UserName <br />
+                        @item.FirstName <br />
+                        @item.LastName <br />
+                        @item.EGN <br />
+                        @item.BloodTypeName<br />
+                    </td>
+
+                    <td>
+                        <div class="btn-group" role="group">
+                            @if (User.IsInRole("Medic"))
+                            {
+                                <form method="post" asp-controller="Email" asp-action="SendEmail" asp-route-id="@item.Email">
+                                    @*  <i class="bi bi-pencil-square"></i>*@
+                                    <input type="hidden" value="@item.Email" name="toEmail" />
+                                    <input class="btn button-17" type="submit" value="Изпрати заявка" />
+                                </form>
+                            }
+
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a asp-controller="UserControl" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary "> <i class="bi bi-pencil-square"></i> Промени</a>
+                                <a asp-controller="UserControl" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger "> <i class="bi bi-person-dash-fill"></i> Изтрий</a>
+                            }
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
