@@ -112,6 +112,16 @@ namespace BBDS.Management.Controllers
                     break;
             }
 
+            List<UserEmailViewModel> users = _db.Users.Select(u => new UserEmailViewModel
+            {
+                Email = u.Email
+            }).ToList();
+            EmailController emailController = new EmailController();
+            foreach (var item in users)
+            {
+                emailController.SendEmail(item.Email);
+            }
+
             foreach (var item in model.Cities)
             {
                 if (item.Id == model.CityId)
@@ -222,6 +232,46 @@ namespace BBDS.Management.Controllers
             TempData["success"] = "Заявката бе успешно приета!";
             await _db.SaveChangesAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+
+        [Authorize(Roles = "Admin,Medic")]
+        public async Task<IActionResult> ViewRequest(Guid Id)
+        {
+            if (Id == Guid.Empty)
+            {
+                return NotFound();
+            }
+            var request = _db.Requests.FirstOrDefault(x => x.Id == Id);
+
+            List<UsersAcceptedRequests> usersAcceptedRequest = await _db.UsersAcceptedRequests.Where(w => w.RequestId == Id)
+                .Select(s => new UsersAcceptedRequests
+                {
+                    UserId = s.UserId,
+                    RequestId = s.RequestId
+                }).ToListAsync();
+
+            List<ApplicationUser> usersList = new List<ApplicationUser>();
+
+            foreach (var item in usersAcceptedRequest)
+            {
+                var user = _db.Users.FirstOrDefault(w => w.Id == item.UserId);
+                usersList.Add(user);
+            }
+
+            InspectRequestViewModel forView = new InspectRequestViewModel();
+
+            forView.Users = usersList;
+
+            forView.Request = request;
+
+            forView.Cities = await _db.Cities.Select(c => new CityViewModel
+            {
+                Name = c.CityName,
+                Id = c.Id
+            }).ToListAsync();
+
+            return View(forView);
         }
     }
 }

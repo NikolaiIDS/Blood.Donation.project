@@ -1,4 +1,5 @@
 ﻿@model CombinedViewModel
+
 <div class="text-center">
     @if (User.Identity.IsAuthenticated)
     {
@@ -22,7 +23,7 @@
                 @if (hasBeenConfirmed == false && request.PeopleToView != 0)
 
                 {
-                    <div class="card">
+                    <div class="card" style=" padding: 25px 25px 25px 25px;">
                         <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.clker.com%2Fcliparts%2FA%2Fg%2Fr%2FN%2FB%2FM%2Fblue-cross-md.png&f=1&nofb=1&ipt=ca47ee144fc7db6d9d149ed6832499a936c8e5c259658f5426ac2b0c4fe2050a&ipo=images" alt="Avatar" style="width:10%">
                         <div class="container">
                             <h4>
@@ -69,8 +70,13 @@
                                     }
                                 }
                             </p>
-                            <a asp-controller="Request" asp-action="Delete" asp-route-id="@request.Id" class="btn btn-danger "> <i class="bi bi-person-dash-fill"></i> Изтрий</a>
-                            <a asp-controller="Request" asp-action="UserAcceptRequest" asp-route-id="@request.Id" class="btn btn-danger "> <i class="bi bi-person-dash-fill"></i> Приеми</a>
+                            @if (User.IsInRole("Admin") || User.IsInRole("Medic"))
+                            {
+                                <a asp-controller="Request" asp-action="Delete" asp-route-id="@request.Id" class="btn btn-danger "> <i class="bi bi-person-dash-fill"></i> Изтрий</a>
+                                <a asp-controller="Request" asp-action="UserAcceptRequest" asp-route-id="@request.Id" class="btn btn-danger "> <i class="bi bi-person-dash-fill"></i> Приеми</a>
+                                <a asp-controller="Request" asp-action="ViewRequest" asp-route-id="@request.Id" class="btn btn-danger "> <i class="bi bi-person-dash-fill"></i> Прегледай</a>
+                            }
+
 
                         </div>
                     </div>

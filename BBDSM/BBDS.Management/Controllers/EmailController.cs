@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+
 using System.Net.Mail;
 
 namespace BBDS.Management.Controllers
@@ -10,7 +11,8 @@ namespace BBDS.Management.Controllers
         string mailBody = "<!DOCTYPE html>" +
                                  "<html>" +
                                      "<body>" +
-                                     "<h1>That's just a testing email.</h1>" +
+                                     "<h1>Има нова заявка за която можеш да помогнеш!</h1>" +
+                                         "< a href=>\"bds.hvtns.net/Home\"</a>"+
                                      "</body>" +
                                  "</html>";
         string fromEmail = "bbdsmanagement@gmail.com";
@@ -25,31 +27,31 @@ namespace BBDS.Management.Controllers
             //message.Attachments.Add(new Attachment());
 
             //Mail message
-            MailMessage message = new MailMessage(new MailAddress(fromEmail,mailTitle),new MailAddress(toEmail));
+            MailMessage message = new MailMessage(new MailAddress(fromEmail, mailTitle), new MailAddress(toEmail));
 
             //Mail content
             message.Subject = mailSubject;
-            message.Body= mailBody;
-            message.IsBodyHtml= true;
+            message.Body = mailBody;
+            message.IsBodyHtml = true;
 
             //Server details
-            SmtpClient smtp = new SmtpClient(); 
-            smtp.Host= "smtp.gmail.com";
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
-            smtp.EnableSsl= true;
+            smtp.EnableSsl = true;
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
 
             //Credentials
             System.Net.NetworkCredential credential = new System.Net.NetworkCredential();
-            credential.UserName= fromEmail;
-            credential.Password= mailPassword;
-            smtp.UseDefaultCredentials= false;   
+            credential.UserName = fromEmail;
+            credential.Password = mailPassword;
+            smtp.UseDefaultCredentials = false;
             smtp.Credentials = credential;
 
             //Send email
-            
+
             smtp.Send(message);
-            TempData["success"] = "Съобщението бе изпратено успешно!";
+            //  TempData["success"] = "Съобщението бе изпратено успешно!";
             return RedirectToAction("Index", "Home");
         }
     }

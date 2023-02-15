@@ -1,0 +1,124 @@
+﻿@model InspectRequestViewModel
+
+<div>
+    <div class="card" style=" padding: 25px 25px 25px 25px;">
+        <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.clker.com%2Fcliparts%2FA%2Fg%2Fr%2FN%2FB%2FM%2Fblue-cross-md.png&f=1&nofb=1&ipt=ca47ee144fc7db6d9d149ed6832499a936c8e5c259658f5426ac2b0c4fe2050a&ipo=images" alt="Avatar" style="width:10%">
+         @if (Model.Request.CountOfRequestedUsers == 0)
+            {
+                 <h1>Заявката е изпълнена</h1>
+            }
+        <div class="container">
+            <h4>
+                <b>
+                    Желана кръвна група:
+                    @switch (Model.Request.BloodTypeId)
+                    {
+                        case 1:
+                            <text>A+</text>
+                            break;
+                        case 2:
+                            <text>A- </text>
+                            break;
+                        case 3:
+                            <text>B+ </text>
+                            break;
+                        case 4:
+                            <text>B- </text>
+                            break;
+                        case 5:
+                            <text>AB+ </text>
+                            break;
+                        case 6:
+                            <text>AB- </text>
+                            break;
+                        case 7:
+                            <text>0+ </text>
+                            break;
+                        case 8:
+                            <text>0- </text>
+                            break;
+                    }
+                </b>
+            </h4>
+            <p>Желан брой хора: @Model.Request.CountOfRequestedUsers</p>
+            <p>
+                Град:
+                @foreach (var item in Model.Cities)
+                {
+                    bool isSelected = item.Id == Model.Request.CityId;
+                    if (isSelected)
+                    {
+                        <text> @item.Name</text>
+                    }
+                }
+            </p>
+
+        </div>
+
+        <div>
+            <table class="table table-bordered table-striped" style="width : 100%">
+                <thead>
+                    <tr>
+                        <th>
+                            Потребители приели заявката
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Users)
+                    {
+                        <tr>
+                            <td width="80%">
+                                @item.UserName <br />
+                                @item.FirstName <br />
+                                @item.LastName <br />
+                                @item.EGN <br />
+                                <div class="mb-3">
+                                    <label>Кръвна група</label><br />
+                                    @if (item.BloodTypeId == 1)
+                                    {
+                                        <text>A+</text>
+                                    }
+                                    @if (item.BloodTypeId == 2)
+                                    {
+                                        <text>A-</text>
+                                    }
+                                    @if (item.BloodTypeId == 3)
+                                    {
+                                        <text>B+</text>
+                                    }
+                                    @if (item.BloodTypeId == 4)
+                                    {
+                                        <text>B-</text>
+                                    }
+                                    @if (item.BloodTypeId == 5)
+                                    {
+                                        <text>AB+</text>
+                                    }
+                                    @if (item.BloodTypeId == 6)
+                                    {
+                                        <text>AB-</text>
+                                    }
+                                    @if (item.BloodTypeId == 7)
+                                    {
+                                        <text>0+</text>
+                                    }
+                                    @if (item.BloodTypeId == 8)
+                                    {
+                                        <text>0-</text>
+                                    }
+
+                                </div>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>

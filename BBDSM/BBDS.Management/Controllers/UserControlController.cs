@@ -227,5 +227,7 @@ namespace BBDS.Management.Controllers
             TempData["error"] = "Потребителят бе изтрит успешно!";
             return RedirectToAction("Index");
         }
+
+
     }
 }
