@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
+using NuGet.Protocol;
+
 namespace BBDS.Management.Controllers
 {
     public class AccountController : Controller
@@ -33,18 +35,18 @@ namespace BBDS.Management.Controllers
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             var personFromDb = await _db.Users
                 .Select(u => new UserEditingViewModel
-            {
-                UserName = u.UserName,
-                Email = u.Email,
-                PhoneNumber = u.PhoneNumber,
-                FirstName = u.FirstName,
-                LastName = u.LastName,
-                EGN = u.EGN,
-                BloodId = u.BloodTypeId,
-                Id = u.Id,
-                CityId = u.CityId,
-                GenderId = u.GenderId
-            }).FirstOrDefaultAsync(u => u.Id == userId);
+                {
+                    UserName = u.UserName,
+                    Email = u.Email,
+                    PhoneNumber = u.PhoneNumber,
+                    FirstName = u.FirstName,
+                    LastName = u.LastName,
+                    EGN = u.EGN,
+                    BloodId = u.BloodTypeId,
+                    Id = u.Id,
+                    CityId = u.CityId,
+                    GenderId = u.GenderId
+                }).FirstOrDefaultAsync(u => u.Id == userId);
 
             if (personFromDb == null)
             {
@@ -172,6 +174,7 @@ namespace BBDS.Management.Controllers
             if (result.Succeeded)
             {
                 await userManager.AddToRoleAsync(user, "User");
+                TempData["success"] = "Регистрирахте се успешно!";
                 return RedirectToAction(nameof(AccountController.Login), "Account");
             }
 
@@ -179,7 +182,7 @@ namespace BBDS.Management.Controllers
             {
                 ModelState.AddModelError("", item.Description);
             }
-            TempData["success"] = "Регистрирахте се успешно!";
+            
             return View(model);
         }
 
@@ -204,23 +207,27 @@ namespace BBDS.Management.Controllers
             if (!ModelState.IsValid)
             {
                 return View(model);
+
             }
 
             var user = await userManager.FindByEmailAsync(model.Email);
 
             if (user != null)
             {
+
+                var edikvosi = await userManager.CheckPasswordAsync(user, model.Password);
                 var result = await signInManager.PasswordSignInAsync(user, model.Password, false, false);
-                TempData["success"] = "Влязохте успешно!";
+               
                 if (result.Succeeded)
                 {
-
+                    TempData["success"] = "Влязохте успешно!";
                     return RedirectToAction(nameof(HomeController.Index), "Home");
 
                 }
+                ModelState.AddModelError("", "Invalid login");
             }
 
-            ModelState.AddModelError("", "Invalid login");
+            
 
             return View(model);
         }
