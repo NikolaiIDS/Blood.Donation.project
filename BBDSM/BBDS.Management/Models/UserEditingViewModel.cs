@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace BBDS.Management.Models
 {
@@ -52,6 +53,7 @@ namespace BBDS.Management.Models
         public string EGN { get; set; } = null!;
 
         public int BloodId { get; set; }
+        public string BloodTypeName { get; set; } = null!;
 
         public string CityName { get; set; } = null!;
 
@@ -63,5 +65,7 @@ namespace BBDS.Management.Models
 
         public int FilterBloodId { get; set; }
         public int PeopleToView { get; set; }
+
+
     }
 }
