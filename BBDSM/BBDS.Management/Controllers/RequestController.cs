@@ -112,15 +112,7 @@ namespace BBDS.Management.Controllers
                     break;
             }
 
-            List<UserEmailViewModel> users = _db.Users.Select(u => new UserEmailViewModel
-            {
-                Email = u.Email
-            }).ToList();
-            EmailController emailController = new EmailController();
-            foreach (var item in users)
-            {
-                emailController.SendEmail(item.Email);
-            }
+            SendEmail(model);
 
             foreach (var item in model.Cities)
             {
@@ -135,6 +127,28 @@ namespace BBDS.Management.Controllers
             TempData["success"] = "Заявката бе успешно създадена!";
             await _db.SaveChangesAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        private void SendEmail(RequestViewModel model)
+        {
+
+
+            List<UserEmailViewModel> users = _db.Users.Select(u => new UserEmailViewModel
+            {
+                Email = u.Email,
+                CityId = u.CityId,
+                BloodId = u.BloodTypeId
+            }).ToList();
+
+            EmailController emailController = new EmailController();
+
+            foreach (var item in users)
+            {
+                if (model.BloodTypeName.Contains(item.BloodId.ToString()) && item.CityId == model.CityId)
+                {
+                    emailController.SendEmail(item.Email);
+                }
+            }
         }
 
         [HttpGet]

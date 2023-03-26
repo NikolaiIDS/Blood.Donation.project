@@ -5,116 +5,117 @@ build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BBDS.Management
 build_property.RootNamespace = BBDS.Management
-build_property.ProjectDir = D:\Users\Nikolai\BloodDonationPJ\Blood.Donation.project\BBDSM\BBDS.Management\
+build_property.ProjectDir = C:\Users\nikolay\Documents\GitHub\Blood.Donation.project\BBDSM\BBDS.Management\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Users\Nikolai\BloodDonationPJ\Blood.Donation.project\BBDSM\BBDS.Management
+build_property.MSBuildProjectDirectory = C:\Users\nikolay\Documents\GitHub\Blood.Donation.project\BBDSM\BBDS.Management
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Areas/Identity/Pages/_ViewStart.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Account/Edit.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/Account/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Account/Inspect.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/Account/Inspect.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxJbnNwZWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Account/login.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/Account/login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxsb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Account/Register.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/ContactUs/ContactUs.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/ContactUs/ContactUs.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdFVzXENvbnRhY3RVcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Home/Index.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Home/Privacy.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Request/Delete.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/Request/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVxdWVzdFxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Request/Index.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/Request/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVxdWVzdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Request/SendRequest.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/Request/SendRequest.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVxdWVzdFxTZW5kUmVxdWVzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Request/UserAcceptRequest.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/Request/UserAcceptRequest.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVxdWVzdFxVc2VyQWNjZXB0UmVxdWVzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Request/ViewRequest.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/Request/ViewRequest.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVxdWVzdFxWaWV3UmVxdWVzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/Error.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/_FilterCriteria.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/_FilterCriteria.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9GaWx0ZXJDcml0ZXJpYS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/_Notifications.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/_Notifications.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ob3RpZmljYXRpb25zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/_RequestCard.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/_RequestCard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9SZXF1ZXN0Q2FyZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/_userTable.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/_userTable.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF91c2VyVGFibGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/UserControl/Delete.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/UserControl/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckNvbnRyb2xcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/UserControl/Edit.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/UserControl/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckNvbnRyb2xcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/UserControl/Index.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/UserControl/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckNvbnRyb2xcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/_ViewImports.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/_ViewStart.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/Nikolai/BloodDonationPJ/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/_Layout.cshtml]
+[C:/Users/nikolay/Documents/GitHub/Blood.Donation.project/BBDSM/BBDS.Management/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-z9e3mgxwa8
